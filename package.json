@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Input component with pluggable search suggestions",
   "author": "Amit Dhamu <dev@amitd.co>",
   "license": "MIT",
