@@ -4,13 +4,18 @@
   "description": "Input component with pluggable search suggestions",
   "author": "Amit Dhamu <dev@amitd.co>",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "parcel build ./src/SearchSuggestions.tsx",
+    "prebuild": "npx rimraf dist",
+    "build": "parcel build ./src/SearchSuggestions.tsx --no-source-maps",
     "dev": "parcel serve ./index.html",
     "lint": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json"
   },
   "devDependencies": {
     "@adhamu/zero": "^2.1.1",
+    "@parcel/packager-ts": "2.3.2",
+    "@parcel/transformer-typescript-types": "2.3.2",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
     "parcel": "^2.3.2",

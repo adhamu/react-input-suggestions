@@ -1,4 +1,3 @@
 *
-!SearchSuggestions.tsx
-!types.ts
-!useListKeyboardNav.ts
+!dist/index.d.ts
+!dist/index.js

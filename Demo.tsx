@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import SearchSuggestions from './SearchSuggestions'
+import SearchSuggestions from './dist/index'
 
 const suggestions = [
   'polite',

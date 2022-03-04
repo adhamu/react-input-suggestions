@@ -1,7 +1,10 @@
 {
   "extends": "./node_modules/@adhamu/zero/tsconfig/react.json",
-  "include": ["**/*.ts*"],
+  "include": ["src/**/*.ts*", "SearchSuggestions.tsx"],
   "compilerOptions": {
-    "outDir": "dist"
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "sourceMap": false
   }
 }
