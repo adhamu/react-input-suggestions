@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Input component with pluggable search suggestions",
   "keywords": [
     "react",
@@ -10,6 +10,10 @@
     "typescript",
     "arrow keys"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adhamu/react-search-suggestions"
+  },
   "license": "MIT",
   "author": "Amit Dhamu <dev@amitd.co>",
   "main": "./dist/index.js",
