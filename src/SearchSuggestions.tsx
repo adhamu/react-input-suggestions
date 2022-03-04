@@ -43,6 +43,7 @@ const SearchSuggestions = ({
   placeholder = 'Search',
   autoFocus = false,
   className = '',
+  onChange,
 }: Props): JSX.Element => {
   const [results, setResults] = React.useState<Suggestion[]>(suggestions)
 
@@ -71,7 +72,12 @@ const SearchSuggestions = ({
           name={name}
           placeholder={placeholder}
           autoFocus={autoFocus}
-          onChange={filterSuggestions}
+          onChange={e => {
+            if (onChange) {
+              onChange(e)
+            }
+            filterSuggestions(e)
+          }}
           onKeyDown={selectInitialResult}
           spellCheck={false}
           autoComplete="off"

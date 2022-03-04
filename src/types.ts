@@ -4,6 +4,7 @@ export type Props = {
   name?: string
   placeholder?: string
   autoFocus?: boolean
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export type Suggestion = {
