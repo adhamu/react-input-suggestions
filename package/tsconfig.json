@@ -1,7 +1,0 @@
-{
-  "extends": "./node_modules/@adhamu/zero/tsconfig/react.json",
-  "include": ["**/*.ts*"],
-  "compilerOptions": {
-    "outDir": "dist"
-  }
-}
