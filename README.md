@@ -63,7 +63,7 @@ The markup is very simple
 
 ## Props
 
-`suggestions` required an array in the below format:
+`suggestions` is a required array with each item following the below format:
 
 ```typescript
 export type Suggestion = {
@@ -85,7 +85,7 @@ export type Suggestion = {
 
 As mentioned above, you can provide a `className` to the component. It comes with some very basic styling.
 
-See [index.html](https://github.com/adhamu/react-search-suggestions/blob/main/index.html) from an example.
+See [index.html](https://github.com/adhamu/react-search-suggestions/blob/main/index.html) for an example.
 
 **Important**: The `:focus` attribute is what powers the active state of a selected element. This is what you want to target to style highlighted search results.
 
