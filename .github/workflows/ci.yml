@@ -4,7 +4,6 @@ on: push
 
 jobs:
   pipeline:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -43,13 +42,6 @@ jobs:
       - name: Build
         if: github.ref == 'refs/heads/main'
         run: yarn build
-
-      - name: Publish to Github Pages
-        if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: dist
 
       - name: Publish to Registry
         run: |
