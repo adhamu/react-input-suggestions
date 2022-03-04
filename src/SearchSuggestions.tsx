@@ -4,7 +4,9 @@ import type { Props, Suggestion } from './types'
 
 import { useListKeyboardNav } from './useListKeyboardNav'
 
-const cssClass = `autocomplete-${btoa('css-autocomplete').replaceAll('=', '')}`
+const cssClass = `search-suggestions-${btoa(
+  'css-search-suggestions'
+).replaceAll('=', '')}`
 
 const baseStyles = `
   .${cssClass} {
@@ -35,7 +37,7 @@ const baseStyles = `
   }
 `
 
-const Autocomplete = ({
+const SearchSuggestions = ({
   suggestions,
   name = 'q',
   placeholder = 'Search',
@@ -95,4 +97,4 @@ const Autocomplete = ({
   )
 }
 
-export default Autocomplete
+export default SearchSuggestions
