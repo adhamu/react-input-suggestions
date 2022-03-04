@@ -39,6 +39,9 @@ jobs:
       - name: Coding Standards
         run: yarn lint
 
+      - name: Build
+        run: yarn build
+
       - name: Publish to Registry
         run: |
           pkg_name=$(cat package.json | jq -r '.name')
