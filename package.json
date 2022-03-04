@@ -1,9 +1,17 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Input component with pluggable search suggestions",
-  "author": "Amit Dhamu <dev@amitd.co>",
+  "keywords": [
+    "react",
+    "autcomplete",
+    "search",
+    "suggestions",
+    "typescript",
+    "arrow keys"
+  ],
   "license": "MIT",
+  "author": "Amit Dhamu <dev@amitd.co>",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -11,6 +19,10 @@
     "build": "parcel build ./src/SearchSuggestions.tsx --no-source-maps",
     "dev": "parcel serve ./index.html",
     "lint": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@adhamu/zero": "^2.1.1",
@@ -21,9 +33,5 @@
     "gh-pages": "^3.2.3",
     "parcel": "^2.3.2",
     "typescript": "^4.6.2"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
   }
 }
