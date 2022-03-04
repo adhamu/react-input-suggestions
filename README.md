@@ -81,7 +81,7 @@ export type Suggestion = {
 | `autoFocus`   | Input autoFocus                        | boolean      | `false`     | N         |
 | `onChange`    | Input onChange handler                 | function     | `undefined` | N         |
 
-## Styling
+## Styling
 
 As mentioned above, you can provide a `className` to the component. It comes with some very basic styling.
 

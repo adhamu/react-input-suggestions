@@ -40,10 +40,15 @@ jobs:
         run: yarn lint
 
       - name: Build
+        if: github.ref == 'refs/heads/main'
         run: yarn build
 
       - name: Publish to Github Pages
-        run: yarn gh-pages -d dist
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: dist
 
       - name: Publish to Registry
         run: |
