@@ -4,6 +4,7 @@ on: push
 
 jobs:
   pipeline:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
