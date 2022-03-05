@@ -171,7 +171,6 @@ You may have forgotten to import it.`);var m=f.__emotion_real===f,E=m&&f.__emoti
     position: absolute;
     top: 100%;
     width: 100%;
-    border-top: 0;
     list-style-type: none;
     overflow-y: auto;
 
