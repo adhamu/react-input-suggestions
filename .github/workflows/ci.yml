@@ -57,13 +57,23 @@ jobs:
           branch: gh-pages
           folder: public
 
-      - name: Create Release
+      - name: Create Pre-release
+        if: github.ref != 'refs/heads/main'
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
-          prerelease: ${{ github.ref != 'ref/heads/main' && true || false }}
+          prerelease: true
+
+      - name: Create Release
+        if: github.ref == 'refs/heads/main'
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
 
       - name: Publish to Registry
         run: |
