@@ -63,7 +63,7 @@ jobs:
           title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
-          prerelease: ${{ github.ref != 'ref/heads/main' }}
+          prerelease: ${{ github.ref != 'ref/heads/main' && true || false }}
 
       - name: Publish to Registry
         run: |
