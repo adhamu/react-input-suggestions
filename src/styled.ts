@@ -12,7 +12,6 @@ export const Styled = styled.div<{ withTheme: boolean }>`
     position: absolute;
     top: 100%;
     width: 100%;
-    border-top: 0;
     list-style-type: none;
     overflow-y: auto;
 
