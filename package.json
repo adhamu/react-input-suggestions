@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Input component with pluggable search suggestions",
   "keywords": [
     "react",
@@ -8,7 +8,8 @@
     "search",
     "suggestions",
     "typescript",
-    "arrow keys"
+    "arrow keys",
+    "esbuild"
   ],
   "repository": {
     "type": "git",
@@ -16,26 +17,35 @@
   },
   "license": "MIT",
   "author": "Amit Dhamu <dev@amitd.co>",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prebuild": "npx rimraf dist",
-    "build": "parcel build ./src/SearchSuggestions.tsx --no-source-maps",
-    "dev": "parcel serve ./index.html",
+    "build": "node esbuild/build.js",
+    "postbuild": "tsc --emitDeclarationOnly --outDir dist",
+    "predeploy": "node esbuild/dev.js",
+    "deploy": "gh-pages -d public",
+    "dev": "node esbuild/dev.js --watch",
     "lint": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@adhamu/zero": "^2.1.1",
-    "@parcel/packager-ts": "2.3.2",
-    "@parcel/transformer-typescript-types": "2.3.2",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
+    "chokidar": "^3.5.3",
+    "esbuild": "^0.14.25",
     "gh-pages": "^3.2.3",
-    "parcel": "^2.3.2",
+    "live-server": "^1.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "typescript": "^4.6.2"
   }
 }

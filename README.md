@@ -25,7 +25,7 @@ yarn add @adhamu/react-search-suggestions
 
 ```typescript
 import React from 'react'
-import SearchSuggestions from '@adhamu/react-search-suggestions'
+import { SearchSuggestions } from '@adhamu/react-search-suggestions'
 
 const suggestions = [
   'polite',

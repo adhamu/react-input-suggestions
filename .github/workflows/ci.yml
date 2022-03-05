@@ -43,6 +43,10 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: yarn build
 
+      - name: Publish to Github Pages
+        if: github.ref == 'refs/heads/main'
+        run: yarn deploy
+
       - name: Publish to Registry
         run: |
           pkg_name=$(cat package.json | jq -r '.name')
