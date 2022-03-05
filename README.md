@@ -75,20 +75,21 @@ export type Suggestion = {
 | Prop          | Description                            | Type         | Default     | Required? |
 | ------------- | -------------------------------------- | ------------ | ----------- | --------- |
 | `suggestions` | Data source for suggestions            | Suggestion[] | n/a         | Y         |
-| `className`   | Optional class name to style component | string       | `''`          | N         |
+| `className`   | Optional class name to style component | string       | `''`        | N         |
 | `name`        | Input name                             | string       | `q`         | N         |
 | `placeholder` | Input placeholder                      | string       | `Search`    | N         |
 | `autoFocus`   | Input autoFocus                        | boolean      | `false`     | N         |
 | `onChange`    | Input onChange handler                 | function     | `undefined` | N         |
+| `withStyles`  | Basic styling for the component        | boolean      | `false`     | N         |
 
 ## Styling
 
-As mentioned above, you can provide a `className` to the component. It comes with some very basic styling.
+By default, the component comes with almost no styles. Given the semantic nature of the markup, it is quite easy to target these with CSS. As mentioned above, you can provide a `className` to the component for this.
 
-See [index.html](https://github.com/adhamu/react-search-suggestions/blob/main/public/index.html) for an example.
+Alternatively, you can set the `withStyles` prop to `true` to achieve some very basic styling. An example of this can be seen on [GitHub Pages](http://adhamu.github.io/react-search-suggestions/).
 
-**Important**: The `:focus` attribute is what powers the active state of a selected element. This is what you want to target to style highlighted search results.
-
+**Important**: The `:focus` attribute on each anchor tag is what powers the active state of a selected element. Refer to the [HTML Structure](#html-structure) above to correctly determine any CSS selectors.
+c
 ## Arrow Key Navigation
 
 You get this functionality for free and was the main motivation for creating this shared component.

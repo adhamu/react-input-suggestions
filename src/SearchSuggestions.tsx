@@ -2,40 +2,8 @@ import React from 'react'
 
 import type { Props, Suggestion } from './types'
 
+import { Styled } from './styled'
 import { useListKeyboardNav } from './useListKeyboardNav'
-
-const cssClass = `search-suggestions-${btoa(
-  'css-search-suggestions'
-).replaceAll('=', '')}`
-
-const baseStyles = `
-  .${cssClass} {
-    position: relative;
-  }
-
-  .${cssClass} ul {
-    box-sizing: border-box;
-    position: absolute;
-    top: calc(100% - 1px);
-    width: 100%;
-    border-top: 0;
-    font-size: 1rem;
-    list-style-type: none;
-    overflow-y: auto;
-  }
-
-  .${cssClass} ul li a {
-    display: block;
-    text-decoration: none;
-  }
-
-  .${cssClass} ul li a:focus {
-    border: 0;
-    boxShadow: 0;
-    font-weight: bold;
-    outline: 0;
-  }
-`
 
 const SearchSuggestions = ({
   suggestions,
@@ -43,6 +11,7 @@ const SearchSuggestions = ({
   placeholder = 'Search',
   autoFocus = false,
   className = '',
+  withTheme = false,
   onChange,
 }: Props): JSX.Element => {
   const [results, setResults] = React.useState<Suggestion[]>(suggestions)
@@ -63,43 +32,40 @@ const SearchSuggestions = ({
     )
 
   return (
-    <>
-      <style dangerouslySetInnerHTML={{ __html: baseStyles }} />
-      <div className={[cssClass, className].join(' ')}>
-        <input
-          ref={inputSearchRef}
-          type="search"
-          name={name}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          onChange={e => {
-            if (onChange) {
-              onChange(e)
-            }
-            filterSuggestions(e)
-          }}
-          onKeyDown={selectInitialResult}
-          spellCheck={false}
-          autoComplete="off"
-          autoCapitalize="off"
-        />
-        {inputSearchRef.current &&
-          inputSearchRef.current.value.length > 0 &&
-          results.length > 0 && (
-            <ul ref={searchSuggestionsRef}>
-              {results.map(suggestion => (
-                <li
-                  key={suggestion.label}
-                  onMouseOver={onResultsHover}
-                  onKeyDown={onResultsKeyDown}
-                >
-                  <a href={suggestion.url}>{suggestion.label}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-      </div>
-    </>
+    <Styled className={className} withTheme={withTheme}>
+      <input
+        ref={inputSearchRef}
+        type="search"
+        name={name}
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+        onChange={e => {
+          if (onChange) {
+            onChange(e)
+          }
+          filterSuggestions(e)
+        }}
+        onKeyDown={selectInitialResult}
+        spellCheck={false}
+        autoComplete="off"
+        autoCapitalize="off"
+      />
+      {inputSearchRef.current &&
+        inputSearchRef.current.value.length > 0 &&
+        results.length > 0 && (
+          <ul ref={searchSuggestionsRef}>
+            {results.map(suggestion => (
+              <li
+                key={suggestion.label}
+                onMouseOver={onResultsHover}
+                onKeyDown={onResultsKeyDown}
+              >
+                <a href={suggestion.url}>{suggestion.label}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+    </Styled>
   )
 }
 

@@ -18,7 +18,7 @@ const watch = process.argv[2] === '--watch' || false
     },
     entryPoints,
     incremental: true,
-    minify: process.env.NODE_ENV === 'production',
+    minify: !watch,
     outfile,
     sourcemap: false,
   })

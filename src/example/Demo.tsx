@@ -59,7 +59,11 @@ const suggestions = [
 }))
 
 const App = (): JSX.Element => (
-  <SearchSuggestions suggestions={suggestions} autoFocus={true} />
+  <SearchSuggestions
+    suggestions={suggestions}
+    autoFocus={true}
+    withTheme={true}
+  />
 )
 
 export default App

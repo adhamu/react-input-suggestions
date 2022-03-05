@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Input component with pluggable search suggestions",
   "keywords": [
     "react",
@@ -33,6 +33,8 @@
     "lint": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
