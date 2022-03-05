@@ -9,11 +9,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set Node version from .nvmrc
-        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
-        id: nvm
+      - name: Set Environment Variables
+        run: |
+          echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+          echo ::set-output name=PACKAGE_VERSION::$(cat package.json | jq -r '.version')
+        id: env_vars
 
-      - name: Install Node.js ${{ steps.nvm.outputs.NODE_VERSION }}
+      - name: Install Node.js ${{ steps.env_vars.outputs.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
@@ -43,11 +45,11 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: yarn build
 
-      - name: Package Public Folder for GitHub Actions
+      - name: Package Public Folder
         if: github.ref == 'refs/heads/main'
         run: yarn predeploy
 
-      - name: Publish to GitHub Pages
+      - name: Deploy
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
@@ -58,12 +60,12 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           prerelease: true
 
       - name: Publish to Registry
         run: |
-          pkg_version=$(cat package.json | jq -r '.version')
+          pkg_version=${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           branch=${GITHUB_REF##*/}
 
           if [[ $branch != "main" ]]; then
