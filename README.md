@@ -75,9 +75,9 @@ export type Suggestion = {
 | Prop          | Description                            | Type         | Default     | Required? |
 | ------------- | -------------------------------------- | ------------ | ----------- | --------- |
 | `suggestions` | Data source for suggestions            | Suggestion[] | n/a         | Y         |
-| `className`   | Optional class name to style component | string       | ''          | N         |
-| `name`        | Input name                             | string       | 'q'         | N         |
-| `placeholder` | Input placeholder                      | string       | 'Search'    | N         |
+| `className`   | Optional class name to style component | string       | `''`          | N         |
+| `name`        | Input name                             | string       | `q`         | N         |
+| `placeholder` | Input placeholder                      | string       | `Search`    | N         |
 | `autoFocus`   | Input autoFocus                        | boolean      | `false`     | N         |
 | `onChange`    | Input onChange handler                 | function     | `undefined` | N         |
 
@@ -85,7 +85,7 @@ export type Suggestion = {
 
 As mentioned above, you can provide a `className` to the component. It comes with some very basic styling.
 
-See [index.html](https://github.com/adhamu/react-search-suggestions/blob/main/index.html) for an example.
+See [index.html](https://github.com/adhamu/react-search-suggestions/blob/main/public/index.html) for an example.
 
 **Important**: The `:focus` attribute is what powers the active state of a selected element. This is what you want to target to style highlighted search results.
 
