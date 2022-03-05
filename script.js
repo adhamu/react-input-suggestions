@@ -498,7 +498,7 @@
             }
             return element;
           };
-          function createElement4(type, config, children) {
+          function createElement3(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1044,7 +1044,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState2(initialState) {
+          function useState(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1546,7 +1546,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement4.apply(this, arguments);
+            var element = createElement3.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1632,7 +1632,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState;
           exports.version = ReactVersion;
         })();
       }
@@ -2488,7 +2488,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment2 = 7;
+          var Fragment = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -8457,7 +8457,7 @@
               }
             }
           }
-          function createElement4(type, props, rootContainerElement, parentNamespace) {
+          function createElement3(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9334,7 +9334,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement4(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement3(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -11672,7 +11672,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment2) {
+              if (current2 === null || current2.tag !== Fragment) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12040,7 +12040,7 @@
               while (child !== null) {
                 if (child.key === key) {
                   switch (child.tag) {
-                    case Fragment2: {
+                    case Fragment: {
                       if (element.type === REACT_FRAGMENT_TYPE) {
                         deleteRemainingChildren(returnFiber, child.sibling);
                         var existing = useFiber(child, element.props.children);
@@ -15644,7 +15644,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment2:
+              case Fragment:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -15811,7 +15811,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment2:
+              case Fragment:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19515,7 +19515,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment2, elements, key, mode);
+            var fiber = createFiber(Fragment, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -20435,14 +20435,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     const inputSearchRef = import_react.default.useRef(null);
     const searchSuggestionsRef = import_react.default.useRef(null);
     const selectElement = (type) => {
-      var _a, _b, _c;
       ;
-      (_c = (_b = (_a = searchSuggestionsRef.current) == null ? void 0 : _a.querySelector(`li:${type}-of-type`)) == null ? void 0 : _b.firstChild) == null ? void 0 : _c.focus();
+      searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)?.firstChild?.focus();
     };
-    const hasFocus = () => {
-      var _a;
-      return (_a = searchSuggestionsRef.current) == null ? void 0 : _a.querySelector("li a:focus");
-    };
+    const hasFocus = () => searchSuggestionsRef.current?.querySelector("li a:focus");
     const selectInitialResult = (e) => {
       if (e.currentTarget.value && !hasFocus() && [ARROW_KEY_DOWN, ARROW_KEY_UP].includes(e.key)) {
         e.preventDefault();
@@ -20455,14 +20451,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       }
     };
     const onResultsHover = (e) => {
-      var _a, _b;
       ;
-      (_b = (_a = e == null ? void 0 : e.currentTarget) == null ? void 0 : _a.firstChild) == null ? void 0 : _b.focus();
+      e?.currentTarget?.firstChild?.focus();
     };
     const selectSiblingType = (e, type) => {
-      var _a, _b;
       e.preventDefault();
-      const resultType = (_b = (_a = e.currentTarget) == null ? void 0 : _a[type]) == null ? void 0 : _b.firstChild;
+      const resultType = e.currentTarget?.[type]?.firstChild;
       if (resultType) {
         resultType.focus();
       } else if (type === "nextElementSibling" /* NEXT */) {
@@ -20475,13 +20469,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       selectSiblingType(e, type);
     };
     const onResultsKeyDown = (e) => {
-      var _a;
       if (e.key === ARROW_KEY_DOWN) {
         selectResult(e, "nextElementSibling" /* NEXT */);
       } else if (e.key === ARROW_KEY_UP) {
         selectResult(e, "previousElementSibling" /* PREVIOUS */);
       } else if (e.key !== ENTER) {
-        (_a = inputSearchRef.current) == null ? void 0 : _a.focus();
+        inputSearchRef.current?.focus();
       }
     };
     return {
@@ -20494,7 +20487,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
 
   // src/SearchSuggestions.tsx
-  var React2 = __toESM(require_react());
+  var import_react2 = __toESM(require_react());
   var cssClass = `search-suggestions-${btoa("css-search-suggestions").replaceAll("=", "")}`;
   var baseStyles = `
   .${cssClass} {
@@ -20532,7 +20525,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     className = "",
     onChange
   }) => {
-    const [results, setResults] = React2.useState(suggestions2);
+    const [results, setResults] = import_react2.default.useState(suggestions2);
     const {
       inputSearchRef,
       searchSuggestionsRef,
@@ -20541,11 +20534,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onResultsKeyDown
     } = useListKeyboardNav();
     const filterSuggestions = (e) => setResults(suggestions2.filter((suggestion) => suggestion.label.toLowerCase().includes(e.target.value || "")));
-    return /* @__PURE__ */ React2.createElement(React2.Fragment, null, /* @__PURE__ */ React2.createElement("style", {
+    return /* @__PURE__ */ import_react2.default.createElement(import_react2.default.Fragment, null, /* @__PURE__ */ import_react2.default.createElement("style", {
       dangerouslySetInnerHTML: { __html: baseStyles }
-    }), /* @__PURE__ */ React2.createElement("div", {
+    }), /* @__PURE__ */ import_react2.default.createElement("div", {
       className: [cssClass, className].join(" ")
-    }, /* @__PURE__ */ React2.createElement("input", {
+    }, /* @__PURE__ */ import_react2.default.createElement("input", {
       ref: inputSearchRef,
       type: "search",
       name,
@@ -20561,13 +20554,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       spellCheck: false,
       autoComplete: "off",
       autoCapitalize: "off"
-    }), inputSearchRef.current && inputSearchRef.current.value.length > 0 && results.length > 0 && /* @__PURE__ */ React2.createElement("ul", {
+    }), inputSearchRef.current && inputSearchRef.current.value.length > 0 && results.length > 0 && /* @__PURE__ */ import_react2.default.createElement("ul", {
       ref: searchSuggestionsRef
-    }, results.map((suggestion) => /* @__PURE__ */ React2.createElement("li", {
+    }, results.map((suggestion) => /* @__PURE__ */ import_react2.default.createElement("li", {
       key: suggestion.label,
       onMouseOver: onResultsHover,
       onKeyDown: onResultsKeyDown
-    }, /* @__PURE__ */ React2.createElement("a", {
+    }, /* @__PURE__ */ import_react2.default.createElement("a", {
       href: suggestion.url
     }, suggestion.label))))));
   };
