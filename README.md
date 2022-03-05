@@ -74,7 +74,8 @@ export type Suggestion = {
 
 | Prop          | Description                            | Type         | Default     | Required? |
 | ------------- | -------------------------------------- | ------------ | ----------- | --------- |
-| `suggestions` | Data source for suggestions            | Suggestion[] | n/a         | Y         |
+| `suggestions` | Data source for suggestions            | Suggestion[] |             | Y         |
+| `id`          | ID for entire component                | string       | `undefined` | N         |
 | `className`   | Optional class name to style component | string       | `''`        | N         |
 | `name`        | Input name                             | string       | `q`         | N         |
 | `placeholder` | Input placeholder                      | string       | `Search`    | N         |

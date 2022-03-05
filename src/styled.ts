@@ -42,7 +42,7 @@ export const Styled = styled.div<{ withTheme: boolean }>`
 
     ul {
       padding: 0;
-      margin-top: -2px;
+      margin-top: -3px;
       border: 1px solid #dadada;
       box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
       font-size: 1rem;

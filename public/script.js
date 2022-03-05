@@ -22602,7 +22602,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
     ul {
       padding: 0;
-      margin-top: -2px;
+      margin-top: -3px;
       border: 1px solid #dadada;
       box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
       font-size: 1rem;
@@ -22625,6 +22625,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     autoFocus = false,
     className = "",
     withTheme: withTheme2 = false,
+    id,
     onChange
   }) => {
     const [results, setResults] = import_react7.default.useState(suggestions2);
@@ -22637,6 +22638,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     } = useListKeyboardNav();
     const filterSuggestions = (e) => setResults(suggestions2.filter((suggestion) => suggestion.label.toLowerCase().includes(e.target.value || "")));
     return /* @__PURE__ */ import_react7.default.createElement(Styled, {
+      id,
       className,
       withTheme: withTheme2
     }, /* @__PURE__ */ import_react7.default.createElement("input", {

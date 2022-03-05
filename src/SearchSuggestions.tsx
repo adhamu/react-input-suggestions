@@ -12,6 +12,7 @@ const SearchSuggestions = ({
   autoFocus = false,
   className = '',
   withTheme = false,
+  id,
   onChange,
 }: Props): JSX.Element => {
   const [results, setResults] = React.useState<Suggestion[]>(suggestions)
@@ -32,7 +33,7 @@ const SearchSuggestions = ({
     )
 
   return (
-    <Styled className={className} withTheme={withTheme}>
+    <Styled id={id} className={className} withTheme={withTheme}>
       <input
         ref={inputSearchRef}
         type="search"

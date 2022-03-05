@@ -1,4 +1,5 @@
 export type Props = {
+  id?: string
   suggestions: Suggestion[]
   className?: string
   name?: string

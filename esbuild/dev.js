@@ -2,9 +2,9 @@ const chokidar = require('chokidar')
 const { build } = require('esbuild')
 const liveServer = require('live-server')
 
-const entryPoints = ['src/example/index.tsx']
-const root = 'public'
-const outfile = `${root}/script.js`
+const entryPoints = ['./src/example/index.tsx']
+const root = './public'
+const outfile = `./${root}/script.js`
 
 const watch = process.argv[2] === '--watch' || false
 
