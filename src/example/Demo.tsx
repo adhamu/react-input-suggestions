@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SearchSuggestions } from '../../dist'
+import { SearchSuggestions } from '..'
 
 const suggestions = [
   'polite',
