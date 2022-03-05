@@ -167,10 +167,10 @@ You may have forgotten to import it.`);var m=f.__emotion_real===f,E=m&&f.__emoti
   }
 
   ul {
-    box-sizing: border-box;
     position: absolute;
     top: 100%;
     width: 100%;
+    box-sizing: border-box;
     list-style-type: none;
     overflow-y: auto;
 
