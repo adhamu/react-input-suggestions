@@ -2,6 +2,6 @@ import * as React from 'react'
 
 import * as ReactDOM from 'react-dom'
 
-import Demo from './Demo'
+import App from './App'
 
-ReactDOM.render(<Demo />, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

@@ -8,10 +8,10 @@ export const Styled = styled.div<{ withTheme: boolean }>`
   }
 
   ul {
-    box-sizing: border-box;
     position: absolute;
     top: 100%;
     width: 100%;
+    box-sizing: border-box;
     list-style-type: none;
     overflow-y: auto;
 

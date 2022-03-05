@@ -1,0 +1,9 @@
+{
+  "extends": ["./node_modules/@adhamu/zero/stylelint/css"],
+  "overrides": [
+    {
+      "files": ["**/*.{js,ts,jsx,tsx}"],
+      "customSyntax": "@stylelint/postcss-css-in-js"
+    }
+  ]
+}

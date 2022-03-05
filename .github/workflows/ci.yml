@@ -17,14 +17,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cache node_modules
         uses: actions/cache@v2
         with:
-          path: '**/node_modules'
+          path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
@@ -54,60 +54,21 @@ jobs:
           branch: gh-pages
           folder: public
 
+      - name: Create Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+
       - name: Publish to Registry
         run: |
-          pkg_name=$(cat package.json | jq -r '.name')
           pkg_version=$(cat package.json | jq -r '.version')
-          major=$(echo "$pkg_version" | cut -d. -f1)
-          minor=$(echo "$pkg_version" | cut -d. -f2)
-          patch=$(echo "$pkg_version" | cut -d. -f3)
           branch=${GITHUB_REF##*/}
 
           if [[ $branch != "main" ]]; then
             yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
             yarn publish --tag beta --access public
           else
-            pub_versions=$(yarn info "${pkg_name}" versions --json | jq -r '.data[] | select(test("^([0-9]|[1-9][0-9]+).([0-9]|[1-9][0-9]+).([0-9]|[1-9][0-9])+$"))')
-            pub_versions_size="${#pub_versions}"
-            version=pkg_version
-
-            if [[ $pub_versions_size == "0" ]]; then
-              yarn publish --access public
-              echo "Successfully published version ${pkg_version} of ${pkg_name}"
-            else
-              if [[ $(echo "$pub_versions" | grep -cF "'${pkg_version}'") == 0 ]]; then
-                latest_version=$(echo "$pub_versions" | tail -1)
-                latest_major=$(echo "$latest_version" | cut -d. -f1)
-
-                if [[ $minor -eq 0 && $patch -eq 0 && $((latest_major + 1)) -eq $major ]]; then
-                  yarn publish --access public
-                  echo "Successfully published version ${pkg_version} of ${pkg_name}"
-                else
-                  latest_version=$(echo "$pub_versions" | grep -Eo "$major\.[[:digit:]]+\.[[:digit:]]+" | tail -1)
-                  latest_minor=$(echo "$latest_version" | cut -d. -f2)
-
-                  if [[ $patch -eq 0 && $((latest_minor + 1)) -eq $minor ]]; then
-                    yarn publish --access public
-                    echo "Successfully published version ${pkg_version} of ${pkg_name}"
-                  else
-                    latest_version=$(echo "$pub_versions" | grep -Eo "$major\.$minor\.[[:digit:]]+" | tail -1)
-                    latest_patch=$(echo "$latest_version" | cut -d. -f3)
-
-                    if [[ $((latest_patch + 1)) -eq $patch ]]; then
-                      yarn publish --access public
-                      echo "Successfully published version ${pkg_version} of ${pkg_name}"
-                    else
-                      echo "The version bump to $major.$minor.$patch is incorrect."
-                      echo "Please note the following rules we enforce:"
-                      echo "- only (major + 1).0.0 can be published if any major.minor.patch versions exist"
-                      echo "- minor and patch must only be incremented by 1 over previously published versions"
-                      exit 1
-                    fi
-                  fi
-                fi
-              else
-                echo "Version ${pkg_version} of ${pkg_name} has already been published, stopping."
-                exit 1
-              fi
-            fi
+            yarn publish --access public
           fi

@@ -2,7 +2,7 @@ const { build } = require('esbuild')
 
 const { dependencies } = require('../package.json')
 
-const shared = {
+const common = {
   bundle: true,
   entryPoints: ['./src/index.ts'],
   external: Object.keys(dependencies || {}),
@@ -13,13 +13,13 @@ const shared = {
 }
 
 build({
-  ...shared,
+  ...common,
   format: 'esm',
   outfile: './dist/index.esm.js',
 })
 
 build({
-  ...shared,
+  ...common,
   format: 'cjs',
   outfile: './dist/index.js',
 })
