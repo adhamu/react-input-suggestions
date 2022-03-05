@@ -1,14 +1,13 @@
 {
   "extends": "./node_modules/@adhamu/zero/tsconfig/react.json",
   "include": ["src/*.ts*"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
-    "baseUrl": "src",
-    "incremental": true,
+    "baseUrl": ".",
     "isolatedModules": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist",
-    "target": "es6",
+    "target": "esnext",
     "sourceMap": false
   }
 }

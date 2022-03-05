@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Input component with pluggable search suggestions",
   "keywords": [
     "react",
@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "author": "Amit Dhamu <dev@amitd.co>",
-  "main": "./dist/index.cjs.js",
+  "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -32,7 +32,7 @@
     "dev": "node esbuild/dev.js --watch",
     "lint": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json"
   },
-  "peerDependencies": {
+  "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -44,8 +44,10 @@
     "esbuild": "^0.14.25",
     "gh-pages": "^3.2.3",
     "live-server": "^1.2.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

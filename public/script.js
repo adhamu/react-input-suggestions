@@ -498,7 +498,7 @@
             }
             return element;
           };
-          function createElement4(type, config, children) {
+          function createElement3(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1044,7 +1044,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState2(initialState) {
+          function useState(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1546,7 +1546,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement4.apply(this, arguments);
+            var element = createElement3.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1632,7 +1632,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState;
           exports.version = ReactVersion;
         })();
       }
@@ -2440,11 +2440,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React5 = require_react();
+          var React3 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2476,7 +2476,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React5) {
+          if (!React3) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -2488,7 +2488,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment2 = 7;
+          var Fragment = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3692,7 +3692,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React5.Children.forEach(children, function(child) {
+            React3.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3703,7 +3703,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React5.Children.forEach(props.children, function(child) {
+                React3.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8457,7 +8457,7 @@
               }
             }
           }
-          function createElement4(type, props, rootContainerElement, parentNamespace) {
+          function createElement3(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9334,7 +9334,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement4(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement3(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10896,7 +10896,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React5.Component().refs;
+          var emptyRefsObject = new React3.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -11672,7 +11672,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment2) {
+              if (current2 === null || current2.tag !== Fragment) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12040,7 +12040,7 @@
               while (child !== null) {
                 if (child.key === key) {
                   switch (child.tag) {
-                    case Fragment2: {
+                    case Fragment: {
                       if (element.type === REACT_FRAGMENT_TYPE) {
                         deleteRemainingChildren(returnFiber, child.sibling);
                         var existing = useFiber(child, element.props.children);
@@ -15644,7 +15644,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment2:
+              case Fragment:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -15811,7 +15811,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment2:
+              case Fragment:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19515,7 +19515,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment2, elements, key, mode);
+            var fiber = createFiber(Fragment, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -20419,89 +20419,60 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
   });
 
-  // src/example/index.tsx
-  var React4 = __toESM(require_react());
-  var ReactDOM = __toESM(require_react_dom());
-
-  // src/example/Demo.tsx
-  var React3 = __toESM(require_react());
-
-  // src/useListKeyboardNav.ts
-  var import_react = __toESM(require_react());
-  var ARROW_KEY_DOWN = "ArrowDown";
-  var ARROW_KEY_UP = "ArrowUp";
-  var ENTER = "Enter";
-  var useListKeyboardNav = () => {
-    const inputSearchRef = import_react.default.useRef(null);
-    const searchSuggestionsRef = import_react.default.useRef(null);
-    const selectElement = (type) => {
-      var _a, _b, _c;
-      ;
-      (_c = (_b = (_a = searchSuggestionsRef.current) == null ? void 0 : _a.querySelector(`li:${type}-of-type`)) == null ? void 0 : _b.firstChild) == null ? void 0 : _c.focus();
-    };
-    const hasFocus = () => {
-      var _a;
-      return (_a = searchSuggestionsRef.current) == null ? void 0 : _a.querySelector("li a:focus");
-    };
-    const selectInitialResult = (e) => {
-      if (e.currentTarget.value && !hasFocus() && [ARROW_KEY_DOWN, ARROW_KEY_UP].includes(e.key)) {
-        e.preventDefault();
-        if (e.key === ARROW_KEY_DOWN) {
-          selectElement("first" /* FIRST */);
-        }
-        if (e.key === ARROW_KEY_UP) {
-          selectElement("last" /* LAST */);
-        }
-      }
-    };
-    const onResultsHover = (e) => {
-      var _a, _b;
-      ;
-      (_b = (_a = e == null ? void 0 : e.currentTarget) == null ? void 0 : _a.firstChild) == null ? void 0 : _b.focus();
-    };
-    const selectSiblingType = (e, type) => {
-      var _a, _b;
-      e.preventDefault();
-      const resultType = (_b = (_a = e.currentTarget) == null ? void 0 : _a[type]) == null ? void 0 : _b.firstChild;
-      if (resultType) {
-        resultType.focus();
-      } else if (type === "nextElementSibling" /* NEXT */) {
-        selectElement("first" /* FIRST */);
-      } else {
-        selectElement("last" /* LAST */);
-      }
-    };
-    const selectResult = (e, type) => {
-      selectSiblingType(e, type);
-    };
-    const onResultsKeyDown = (e) => {
-      var _a;
-      if (e.key === ARROW_KEY_DOWN) {
-        selectResult(e, "nextElementSibling" /* NEXT */);
-      } else if (e.key === ARROW_KEY_UP) {
-        selectResult(e, "previousElementSibling" /* PREVIOUS */);
-      } else if (e.key !== ENTER) {
-        (_a = inputSearchRef.current) == null ? void 0 : _a.focus();
-      }
-    };
-    return {
-      inputSearchRef,
-      searchSuggestionsRef,
-      selectInitialResult,
-      onResultsHover,
-      onResultsKeyDown
-    };
-  };
-
-  // src/SearchSuggestions.tsx
-  var React2 = __toESM(require_react());
-  var cssClass = `search-suggestions-${btoa("css-search-suggestions").replaceAll("=", "")}`;
-  var baseStyles = `
-  .${cssClass} {
+  // dist/index.js
+  var require_dist = __commonJS({
+    "dist/index.js"(exports, module) {
+      var M = Object.create;
+      var m = Object.defineProperty;
+      var w = Object.getOwnPropertyDescriptor;
+      var H = Object.getOwnPropertyNames;
+      var x = Object.getPrototypeOf;
+      var k = Object.prototype.hasOwnProperty;
+      var R = (e) => m(e, "__esModule", { value: true });
+      var D = (e, s) => {
+        for (var o in s)
+          m(e, o, { get: s[o], enumerable: true });
+      };
+      var d = (e, s, o, u) => {
+        if (s && typeof s == "object" || typeof s == "function")
+          for (let l of H(s))
+            !k.call(e, l) && (o || l !== "default") && m(e, l, { get: () => s[l], enumerable: !(u = w(s, l)) || u.enumerable });
+        return e;
+      };
+      var h = (e, s) => d(R(m(e != null ? M(x(e)) : {}, "default", !s && e && e.__esModule ? { get: () => e.default, enumerable: true } : { value: e, enumerable: true })), e);
+      var N = ((e) => (s, o) => e && e.get(s) || (o = d(R({}), s, 1), e && e.set(s, o), o))(typeof WeakMap != "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
+      var P = {};
+      D(P, { SearchSuggestions: () => v, useListKeyboardNav: () => T });
+      var b = h(require_react());
+      var g = "ArrowDown";
+      var E = "ArrowUp";
+      var A = "Enter";
+      var T = () => {
+        let e = b.default.useRef(null), s = b.default.useRef(null), o = (t) => {
+          s.current?.querySelector(`li:${t}-of-type`)?.firstChild?.focus();
+        }, u = () => s.current?.querySelector("li a:focus"), l = (t) => {
+          t.currentTarget.value && !u() && [g, E].includes(t.key) && (t.preventDefault(), t.key === g && o("first"), t.key === E && o("last"));
+        }, c = (t) => {
+          t?.currentTarget?.firstChild?.focus();
+        }, f = (t, i) => {
+          t.preventDefault();
+          let S = t.currentTarget?.[i]?.firstChild;
+          S ? S.focus() : o(i === "nextElementSibling" ? "first" : "last");
+        }, p = (t, i) => {
+          f(t, i);
+        };
+        return { inputSearchRef: e, searchSuggestionsRef: s, selectInitialResult: l, onResultsHover: c, onResultsKeyDown: (t) => {
+          t.key === g ? p(t, "nextElementSibling") : t.key === E ? p(t, "previousElementSibling") : t.key !== A && e.current?.focus();
+        } };
+      };
+      var n = h(require_react());
+      var a = `search-suggestions-${btoa("css-search-suggestions").replaceAll("=", "")}`;
+      var C = `
+  .${a} {
     position: relative;
   }
 
-  .${cssClass} ul {
+  .${a} ul {
     box-sizing: border-box;
     position: absolute;
     top: calc(100% - 1px);
@@ -20512,68 +20483,36 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     overflow-y: auto;
   }
 
-  .${cssClass} ul li a {
+  .${a} ul li a {
     display: block;
     text-decoration: none;
   }
 
-  .${cssClass} ul li a:focus {
+  .${a} ul li a:focus {
     border: 0;
     boxShadow: 0;
     font-weight: bold;
     outline: 0;
   }
 `;
-  var SearchSuggestions = ({
-    suggestions: suggestions2,
-    name = "q",
-    placeholder = "Search",
-    autoFocus = false,
-    className = "",
-    onChange
-  }) => {
-    const [results, setResults] = React2.useState(suggestions2);
-    const {
-      inputSearchRef,
-      searchSuggestionsRef,
-      selectInitialResult,
-      onResultsHover,
-      onResultsKeyDown
-    } = useListKeyboardNav();
-    const filterSuggestions = (e) => setResults(suggestions2.filter((suggestion) => suggestion.label.toLowerCase().includes(e.target.value || "")));
-    return /* @__PURE__ */ React2.createElement(React2.Fragment, null, /* @__PURE__ */ React2.createElement("style", {
-      dangerouslySetInnerHTML: { __html: baseStyles }
-    }), /* @__PURE__ */ React2.createElement("div", {
-      className: [cssClass, className].join(" ")
-    }, /* @__PURE__ */ React2.createElement("input", {
-      ref: inputSearchRef,
-      type: "search",
-      name,
-      placeholder,
-      autoFocus,
-      onChange: (e) => {
-        if (onChange) {
-          onChange(e);
-        }
-        filterSuggestions(e);
-      },
-      onKeyDown: selectInitialResult,
-      spellCheck: false,
-      autoComplete: "off",
-      autoCapitalize: "off"
-    }), inputSearchRef.current && inputSearchRef.current.value.length > 0 && results.length > 0 && /* @__PURE__ */ React2.createElement("ul", {
-      ref: searchSuggestionsRef
-    }, results.map((suggestion) => /* @__PURE__ */ React2.createElement("li", {
-      key: suggestion.label,
-      onMouseOver: onResultsHover,
-      onKeyDown: onResultsKeyDown
-    }, /* @__PURE__ */ React2.createElement("a", {
-      href: suggestion.url
-    }, suggestion.label))))));
-  };
-  var SearchSuggestions_default = SearchSuggestions;
+      var O = ({ suggestions: e, name: s = "q", placeholder: o = "Search", autoFocus: u = false, className: l = "", onChange: c }) => {
+        let [f, p] = n.default.useState(e), { inputSearchRef: y, searchSuggestionsRef: t, selectInitialResult: i, onResultsHover: S, onResultsKeyDown: L } = T(), I = (r) => p(e.filter((K) => K.label.toLowerCase().includes(r.target.value || "")));
+        return n.default.createElement(n.default.Fragment, null, n.default.createElement("style", { dangerouslySetInnerHTML: { __html: C } }), n.default.createElement("div", { className: [a, l].join(" ") }, n.default.createElement("input", { ref: y, type: "search", name: s, placeholder: o, autoFocus: u, onChange: (r) => {
+          c && c(r), I(r);
+        }, onKeyDown: i, spellCheck: false, autoComplete: "off", autoCapitalize: "off" }), y.current && y.current.value.length > 0 && f.length > 0 && n.default.createElement("ul", { ref: t }, f.map((r) => n.default.createElement("li", { key: r.label, onMouseOver: S, onKeyDown: L }, n.default.createElement("a", { href: r.url }, r.label))))));
+      };
+      var v = O;
+      module.exports = N(P);
+    }
+  });
+
+  // src/example/index.tsx
+  var React2 = __toESM(require_react());
+  var ReactDOM = __toESM(require_react_dom());
 
   // src/example/Demo.tsx
+  var React = __toESM(require_react());
+  var import_dist = __toESM(require_dist());
   var suggestions = [
     "polite",
     "fastidious",
@@ -20629,14 +20568,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     label: word,
     url: `https://www.google.co.uk/search?q=${word}`
   }));
-  var App = () => /* @__PURE__ */ React3.createElement(SearchSuggestions_default, {
+  var App = () => /* @__PURE__ */ React.createElement(import_dist.SearchSuggestions, {
     suggestions,
     autoFocus: true
   });
   var Demo_default = App;
 
   // src/example/index.tsx
-  ReactDOM.render(/* @__PURE__ */ React4.createElement(Demo_default, null), document.getElementById("app"));
+  ReactDOM.render(/* @__PURE__ */ React2.createElement(Demo_default, null), document.getElementById("app"));
 })();
 /*
 object-assign
