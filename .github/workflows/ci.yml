@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Node version from .nvmrc
         run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
@@ -45,9 +43,16 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: yarn build
 
-      - name: Publish to Github Pages
+      - name: Package Public Folder for GitHub Actions
         if: github.ref == 'refs/heads/main'
-        run: yarn deploy
+        run: yarn dev
+
+      - name: Publish to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: public
 
       - name: Publish to Registry
         run: |
