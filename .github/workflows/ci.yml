@@ -45,7 +45,7 @@ jobs:
 
       - name: Package Public Folder for GitHub Actions
         if: github.ref == 'refs/heads/main'
-        run: node esbuild/dev.js
+        run: yarn predeploy
 
       - name: Publish to GitHub Pages
         if: github.ref == 'refs/heads/main'
