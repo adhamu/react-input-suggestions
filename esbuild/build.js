@@ -5,7 +5,7 @@ const { dependencies } = require('../package.json')
 const shared = {
   bundle: true,
   entryPoints: ['./src/index.ts'],
-  external: Object.keys(dependencies),
+  external: Object.keys(dependencies || {}),
   logLevel: 'info',
   minify: true,
   sourcemap: true,

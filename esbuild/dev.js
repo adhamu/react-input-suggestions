@@ -40,5 +40,4 @@ const watch = process.argv[2] === '--watch' || false
     port: +process.env.PORT || 8080,
     root,
   })
-
 })()
