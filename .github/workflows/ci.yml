@@ -63,7 +63,7 @@ jobs:
         with:
           title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          automatic_release_tag: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           prerelease: true
 
       - name: Create Release
