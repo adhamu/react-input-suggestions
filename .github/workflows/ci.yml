@@ -66,9 +66,10 @@ jobs:
       - name: Publish to Registry
         run: |
           pkg_version=${{ steps.env_vars.outputs.PACKAGE_VERSION }}
+          branch=${GITHUB_REF##*/}
 
           if [[ $branch != "main" ]]; then
-            yarn version --new-version "${GITHUB_REF##*/}-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
+            yarn version --new-version "$pkg_version-beta$GITHUB_RUN_NUMBER" --no-git-tag-version
             yarn publish --tag beta --access public
           else
             yarn publish --access public
