@@ -95,7 +95,7 @@ By default, the component comes with almost no styles. Given the semantic nature
 
 Alternatively, you can set the `withStyles` prop to `true` to achieve some very basic styling. An example of this can be seen on [GitHub Pages](http://adhamu.github.io/react-search-suggestions/).
 
-**Important**: The `:focus` attribute on top level element of each search suggestion is what powers the active state of a selected element. Refer to the [HTML Structure](#html-structure) above to correctly determine any CSS selectors.
+**Important**: The `:focus` attribute on each top level element's search suggestion is what powers the active state of a selected element. Refer to the [HTML Structure](#html-structure) above to correctly determine any CSS selectors.
 
 ## Arrow Key Navigation
 

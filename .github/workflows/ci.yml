@@ -43,7 +43,6 @@ jobs:
         run: yarn lint
 
       - name: Build
-        if: github.ref == 'refs/heads/main'
         run: yarn build
 
       - name: Package Public Folder
