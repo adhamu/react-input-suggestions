@@ -1,6 +1,8 @@
+import type React from 'react'
+
 export type Props = {
   id?: string
-  suggestions: Suggestion[]
+  suggestions: React.ReactNode[]
   className?: string
   name?: string
   placeholder?: string

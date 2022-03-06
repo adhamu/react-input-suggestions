@@ -5,8 +5,8 @@ const ARROW_KEY_UP = 'ArrowUp'
 const ENTER = 'Enter'
 
 enum SiblingType {
-  NEXT = 'nextElementSibling',
-  PREVIOUS = 'previousElementSibling',
+  NEXT = 'nextSibling',
+  PREVIOUS = 'previousSibling',
 }
 
 enum ResultType {
@@ -19,14 +19,23 @@ export const useListKeyboardNav = () => {
   const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
 
   const selectElement = (type: ResultType) => {
-    ;(
+    console.log(
       searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)
-        ?.firstChild as HTMLInputElement
+        ?.children[0]
+    )
+    console.log(
+      searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)
+        ?.children[0]
+    )
+    ;(
+      searchSuggestionsRef.current?.querySelector(
+        `li:${type}-of-type > *`
+      ) as HTMLInputElement
     )?.focus()
   }
 
   const hasFocus = () =>
-    searchSuggestionsRef.current?.querySelector('li a:focus')
+    searchSuggestionsRef.current?.querySelector('li > *:focus')
 
   const selectInitialResult = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -47,6 +56,7 @@ export const useListKeyboardNav = () => {
   }
 
   const onResultsHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    console.log(e?.currentTarget?.firstChild)
     ;(e?.currentTarget?.firstChild as HTMLInputElement)?.focus()
   }
 

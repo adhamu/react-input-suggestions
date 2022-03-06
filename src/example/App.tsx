@@ -53,10 +53,12 @@ const suggestions = [
   'carpet',
   'pressure',
   'cooperate',
-].map(word => ({
-  label: word,
-  url: `https://www.google.co.uk/search?q=${word}`,
-}))
+].map(word => (
+  <section key={word}>
+    <a href={`https://www.google.co.uk/search?q=${word}`}>{word}</a>
+    <button>{word}</button>
+  </section>
+))
 
 const App = (): JSX.Element => (
   <SearchSuggestions

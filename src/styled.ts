@@ -15,8 +15,9 @@ export const Styled = styled.div<{ withTheme: boolean }>`
     list-style-type: none;
     overflow-y: auto;
 
-    li a {
+    li > * {
       display: block;
+      cursor: pointer;
       text-decoration: none;
 
       &:focus {
@@ -46,12 +47,13 @@ export const Styled = styled.div<{ withTheme: boolean }>`
       box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
       font-size: 1rem;
 
-    li a {
-      padding: 1rem;
+      li > * {
+        padding: 1rem;
 
-      &:focus {
-        background: #efefef;
+        &:focus {
+          background: #efefef;
+        }
       }
     }
-  }`}
+  `}
 `
