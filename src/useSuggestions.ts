@@ -14,23 +14,21 @@ enum ResultType {
   LAST = 'last',
 }
 
-export const useListKeyboardNav = () => {
+export const useSuggestions = () => {
   const inputSearchRef = React.useRef<HTMLInputElement>(null)
   const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
 
+  React.useEffect(() => {
+    searchSuggestionsRef.current?.querySelectorAll('li')?.forEach(el => {
+      // eslint-disable-next-line no-param-reassign
+      ;(el.firstChild as HTMLElement).tabIndex = -1
+    })
+  })
+
   const selectElement = (type: ResultType) => {
-    console.log(
-      searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)
-        ?.children[0]
-    )
-    console.log(
-      searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)
-        ?.children[0]
-    )
     ;(
-      searchSuggestionsRef.current?.querySelector(
-        `li:${type}-of-type > *`
-      ) as HTMLInputElement
+      searchSuggestionsRef.current?.querySelector(`li:${type}-of-type`)
+        ?.firstChild as HTMLInputElement
     )?.focus()
   }
 
@@ -56,7 +54,6 @@ export const useListKeyboardNav = () => {
   }
 
   const onResultsHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    console.log(e?.currentTarget?.firstChild)
     ;(e?.currentTarget?.firstChild as HTMLInputElement)?.focus()
   }
 

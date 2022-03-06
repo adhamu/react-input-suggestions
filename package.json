@@ -1,14 +1,14 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "1.0.0",
-  "description": "Input component with pluggable search suggestions",
+  "version": "2.0.0",
+  "description": "A React input component with pluggable search suggestions.",
   "keywords": [
     "react",
     "autcomplete",
     "search",
     "suggestions",
     "typescript",
-    "arrow keys",
+    "arrow key navigation",
     "esbuild"
   ],
   "repository": {

@@ -10,8 +10,3 @@ export type Props = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   withTheme?: boolean
 }
-
-export type Suggestion = {
-  label: string
-  url: string
-}
