@@ -29,7 +29,9 @@ const SearchSuggestions = ({
   const filterSuggestions = (e: { target: { value: string } }) =>
     setResults(
       suggestions.filter(suggestion =>
-        getElementText(suggestion)?.includes(e.target.value || '')
+        getElementText(suggestion)
+          ?.toLowerCase()
+          .includes(e.target.value.toLowerCase() || '')
       )
     )
 
