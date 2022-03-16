@@ -17,14 +17,11 @@ const SearchSuggestions = ({
   onChange,
 }: Props): JSX.Element => {
   const [results, setResults] = React.useState<React.ReactNode[]>(suggestions)
+  const inputSearchRef = React.useRef<HTMLInputElement>(null)
+  const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
 
-  const {
-    inputSearchRef,
-    searchSuggestionsRef,
-    selectInitialResult,
-    onResultsHover,
-    onResultsKeyDown,
-  } = useSuggestions()
+  const { selectInitialResult, onResultsHover, onResultsKeyDown } =
+    useSuggestions(inputSearchRef, searchSuggestionsRef)
 
   const filterSuggestions = (e: { target: { value: string } }) =>
     setResults(

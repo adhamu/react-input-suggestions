@@ -14,10 +14,10 @@ enum ResultType {
   LAST = 'last',
 }
 
-export const useSuggestions = () => {
-  const inputSearchRef = React.useRef<HTMLInputElement>(null)
-  const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
-
+export const useSuggestions = (
+  inputSearchRef: React.RefObject<HTMLInputElement>,
+  searchSuggestionsRef: React.RefObject<HTMLUListElement>
+) => {
   React.useEffect(() => {
     searchSuggestionsRef.current?.querySelectorAll('li')?.forEach(el => {
       // eslint-disable-next-line no-param-reassign
@@ -92,8 +92,6 @@ export const useSuggestions = () => {
   }
 
   return {
-    inputSearchRef,
-    searchSuggestionsRef,
     selectInitialResult,
     onResultsHover,
     onResultsKeyDown,

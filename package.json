@@ -1,6 +1,6 @@
 {
   "name": "@adhamu/react-search-suggestions",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A React input component with pluggable search suggestions.",
   "keywords": [
     "react",
@@ -26,7 +26,7 @@
   "scripts": {
     "prebuild": "npx rimraf dist",
     "build": "node esbuild/build.js",
-    "postbuild": "tsc --emitDeclarationOnly --outDir dist",
+    "postbuild": "tsc --project tsconfig.build.json",
     "predeploy": "node esbuild/dev.js",
     "deploy": "gh-pages -d public",
     "dev": "node esbuild/dev.js --watch",
@@ -34,7 +34,8 @@
     "lint:scripts": "eslint 'src/**/*.ts*' --ignore-path=.eslintignore --config=.eslintrc.json",
     "lint:styles": "stylelint 'src/**/*.ts*'",
     "test": "jest --colors",
-    "test:coverage": "yarn test --coverage"
+    "test:coverage": "yarn test --coverage",
+    "type": "tsc --noEmit"
   },
   "dependencies": {
     "@emotion/react": "^11.8.1",
