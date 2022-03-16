@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const Styled = styled.div<{ withTheme: boolean }>`
+export const Styled = styled.div<{ withTheme?: boolean }>`
   position: relative;
 
   input {

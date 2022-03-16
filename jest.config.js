@@ -3,4 +3,5 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
   testEnvironment: 'jsdom',
   collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/example/**/*.{ts,tsx}'],
+  snapshotSerializers: ['@emotion/jest/serializer'],
 }

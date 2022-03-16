@@ -7,7 +7,6 @@
     "isolatedModules": true,
     "moduleResolution": "node",
     "outDir": "./dist",
-    "target": "esnext",
-    "sourceMap": false
+    "target": "esnext"
   }
 }

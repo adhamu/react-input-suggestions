@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@adhamu/zero": "^3.0.1",
+    "@emotion/jest": "^11.8.0",
     "@stylelint/postcss-css-in-js": "^0.37.2",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
