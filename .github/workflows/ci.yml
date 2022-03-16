@@ -62,22 +62,36 @@ jobs:
           branch: gh-pages
           folder: public
 
+      - name: Changelog
+        uses: Bullrich/generate-release-changelog@master
+        id: changelog
+        env:
+          REPO: ${{ github.repository }}
+
       - name: Create Pre-release
         if: github.ref != 'refs/heads/main'
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            ${{ steps.changelog.outputs.changelog }}
+          draft: false
           prerelease: true
 
       - name: Create Release
         if: github.ref == 'refs/heads/main'
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            ${{ steps.changelog.outputs.changelog }}
+          draft: false
           prerelease: false
 
       - name: Publish to Registry
