@@ -8,11 +8,11 @@ describe('getElementText', () => {
   )
 
   it('handles strings', () => {
-    expect(getElementText(<>This is a test</>)).toBe('This is a test')
+    expect(getElementText('This is a test')).toBe('This is a test')
   })
 
   it('handles numbers', () => {
-    expect(getElementText(<>100</>)).toBe('100')
+    expect(getElementText(100)).toBe(100)
   })
 
   it('handles nested markup', () => {
