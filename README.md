@@ -29,7 +29,7 @@ import { SearchSuggestions } from '@adhamu/react-search-suggestions'
 
 const MyComponent = () => (
   <SearchSuggestions
-    autoFocus={true}
+    autoFocus
     suggestions={[
       'polite',
       'fastidious',
@@ -74,6 +74,47 @@ The markup is very simple. You bring what populates each search suggestion. In t
     </li>
   </ul>
 </div>
+```
+
+If you wanted to do something else `onClick` or `onKeyDown`, you could do something like:
+
+```jsx
+import React from 'react'
+import { SearchSuggestions } from '@adhamu/react-search-suggestions'
+
+const customFunction = (arg: string) => {
+  console.log(arg)
+}
+
+const MyComponent = () => (
+  <SearchSuggestions
+    autoFocus
+    suggestions={[
+      'polite',
+      'fastidious',
+      'dull',
+      'pudding',
+      'mole',
+      'angle',
+    ].map(word => (
+      <span
+        key={word}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            customFunction(word)
+          }
+        }}
+        onClick={() => {
+          customFunction(word)
+        }}
+      >
+        {word}
+      </span>
+    ))}
+  />
+)
+
+export default MyComponent
 ```
 
 ## Props
