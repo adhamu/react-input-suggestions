@@ -77,7 +77,7 @@ jobs:
           tag_name: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           release_name: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
           body: ${{ steps.changelog.outputs.changelog }}
-          draft: false
+          draft: true
           prerelease: true
 
       - name: Create Release
