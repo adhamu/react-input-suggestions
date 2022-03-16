@@ -68,18 +68,6 @@ jobs:
         env:
           REPO: ${{ github.repository }}
 
-      - name: Create Pre-release
-        if: github.ref != 'refs/heads/main'
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
-          release_name: ${{ steps.env_vars.outputs.PACKAGE_VERSION }}
-          body: ${{ steps.changelog.outputs.changelog }}
-          draft: true
-          prerelease: true
-
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@latest
