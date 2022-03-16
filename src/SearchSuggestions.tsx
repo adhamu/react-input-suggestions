@@ -2,7 +2,7 @@ import React from 'react'
 
 import type { Props } from './types'
 
-import { getElementText } from './getElementText'
+import { getElementText, wrapElementText } from './getElementText'
 import { Styled } from './styled'
 import { useSuggestions } from './useSuggestions'
 
@@ -61,7 +61,7 @@ const SearchSuggestions = ({
                 onMouseOver={onResultsHover}
                 onKeyDown={onResultsKeyDown}
               >
-                {suggestion}
+                {wrapElementText(suggestion, inputSearchRef.current?.value)}
               </li>
             ))}
           </ul>

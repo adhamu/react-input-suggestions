@@ -15,6 +15,11 @@ export const Styled = styled.div<{ withTheme?: boolean }>`
     list-style-type: none;
     overflow-y: auto;
 
+    li mark {
+      display: inline;
+      padding: 0;
+    }
+
     li > * {
       display: block;
       cursor: pointer;
