@@ -63,6 +63,7 @@ jobs:
           folder: public
 
       - name: Changelog
+        if: github.ref == 'refs/heads/main'
         uses: Bullrich/generate-release-changelog@master
         id: changelog
         env:
