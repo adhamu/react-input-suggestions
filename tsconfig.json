@@ -1,6 +1,6 @@
 {
   "extends": "./node_modules/@adhamu/zero/tsconfig/react.json",
-  "include": ["src/*.ts*"],
+  "include": ["src/**/*.ts*"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "baseUrl": ".",

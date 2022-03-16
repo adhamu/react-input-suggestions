@@ -6,7 +6,7 @@ export const getElementText = (node: React.ReactNode): string | undefined => {
   }
 
   if (node instanceof Array) {
-    return [...new Set(node.map(getElementText))].join('')
+    return [...new Set(node.map(getElementText))].join(' ')
   }
 
   if (typeof node === 'object' && node) {
