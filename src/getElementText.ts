@@ -1,5 +1,3 @@
-import type React from 'react'
-
 export const getElementText = (node: React.ReactNode): string | undefined => {
   if (['string', 'number'].includes(typeof node)) {
     return node as string
