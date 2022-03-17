@@ -15,6 +15,7 @@ const SearchSuggestions = ({
   withTheme = false,
   id,
   onChange,
+  highlightKeywords = false,
 }: Props): JSX.Element => {
   const [results, setResults] = React.useState<React.ReactNode[]>(suggestions)
   const inputSearchRef = React.useRef<HTMLInputElement>(null)
@@ -61,7 +62,12 @@ const SearchSuggestions = ({
                 onMouseOver={onResultsHover}
                 onKeyDown={onResultsKeyDown}
               >
-                {wrapElementText(suggestion, inputSearchRef.current?.value)}
+                {highlightKeywords
+                  ? wrapElementText(
+                      suggestion,
+                      inputSearchRef.current?.value || ''
+                    )
+                  : suggestion}
               </li>
             ))}
           </ul>

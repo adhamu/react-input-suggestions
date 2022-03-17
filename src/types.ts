@@ -9,4 +9,5 @@ export type Props = {
   autoFocus?: boolean
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   withTheme?: boolean
+  highlightKeywords?: boolean
 }

@@ -18,31 +18,36 @@ export const getElementText = (node: React.ReactNode): string | undefined => {
   return undefined
 }
 
+const highlightKeyword = (content: string, keyword: string) =>
+  reactStringReplace(content, keyword, (match, key) => (
+    <mark key={key}>{match}</mark>
+  ))
+
+const cloneChildren = (children: React.ReactElement[], keyword: string): any =>
+  React.Children.map(children, child =>
+    child.props
+      ? React.cloneElement(child, {
+          children: highlightKeyword(
+            cloneChildren(child.props.children, keyword),
+            keyword
+          ),
+        })
+      : child
+  )
+
 export const wrapElementText = (
   node: React.ReactNode,
-  str: string | undefined
+  keyword: string
 ): React.ReactElement | React.ReactNode => {
+  const n = node as React.ReactElement
   const {
     props: { children },
-  } = node as React.ReactElement
+  } = n
 
-  if (!Array.isArray(children) && typeof children !== 'string') {
-    return wrapElementText(children, str)
-  }
-
-  if (Array.isArray(children)) {
-    return children.map((e: React.ReactElement) => wrapElementText(e, str))
-  }
-
-  return React.cloneElement(node as React.ReactElement, {
-    children: (
-      <span>
-        {reactStringReplace(children, str, (match, key) => (
-          <mark key={key}>{match}</mark>
-        ))}
-      </span>
-    ),
+  return React.cloneElement(n, {
+    children:
+      typeof children === 'string'
+        ? highlightKeyword(children, keyword)
+        : cloneChildren(children, keyword),
   })
-
-  return node
 }

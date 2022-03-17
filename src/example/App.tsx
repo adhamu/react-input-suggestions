@@ -65,15 +65,18 @@ const suggestions = [
       console.log(word)
     }}
   >
-    <div>{word}</div>
+    <div>
+      <div>{word}</div>
+    </div>
   </a>
 ))
 
 const App = (): JSX.Element => (
   <SearchSuggestions
     suggestions={suggestions}
-    autoFocus={true}
-    withTheme={true}
+    autoFocus
+    withTheme
+    highlightKeywords
   />
 )
 
