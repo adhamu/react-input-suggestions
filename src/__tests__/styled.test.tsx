@@ -17,6 +17,11 @@ describe('Search Suggestion Styles', () => {
         width: 100%;
       }
 
+      .emotion-0 mark {
+        display: inline;
+        padding: 0;
+      }
+
       .emotion-0 ul {
         position: absolute;
         top: 100%;
@@ -36,7 +41,6 @@ describe('Search Suggestion Styles', () => {
       .emotion-0 ul li>*:focus {
         border: 0;
         box-shadow: 0;
-        font-weight: bold;
         outline: 0;
       }
 
@@ -62,6 +66,11 @@ describe('Search Suggestion Styles', () => {
         width: 100%;
       }
 
+      .emotion-0 mark {
+        display: inline;
+        padding: 0;
+      }
+
       .emotion-0 ul {
         position: absolute;
         top: 100%;
@@ -81,7 +90,6 @@ describe('Search Suggestion Styles', () => {
       .emotion-0 ul li>*:focus {
         border: 0;
         box-shadow: 0;
-        font-weight: bold;
         outline: 0;
       }
 

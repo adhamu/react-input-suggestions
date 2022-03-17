@@ -23,7 +23,7 @@ export const useSuggestions = (
       // eslint-disable-next-line no-param-reassign
       ;(el.firstChild as HTMLElement).tabIndex = -1
     })
-  })
+  }, [searchSuggestionsRef.current])
 
   const selectElement = (type: ResultType) => {
     ;(
