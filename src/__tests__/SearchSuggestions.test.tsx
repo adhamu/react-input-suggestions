@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import SearchSuggestions from '../SearchSuggestions'
-import * as getElementText from '../getElementText'
+import * as getElementText from '../elementText'
 
 const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
   <a key={word} href={`https://${word}.com`}>

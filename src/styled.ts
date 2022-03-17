@@ -7,6 +7,11 @@ export const Styled = styled.div<{ withTheme?: boolean }>`
     width: 100%;
   }
 
+  mark {
+    display: inline;
+    padding: 0;
+  }
+
   ul {
     position: absolute;
     top: 100%;
@@ -14,11 +19,6 @@ export const Styled = styled.div<{ withTheme?: boolean }>`
     box-sizing: border-box;
     list-style-type: none;
     overflow-y: auto;
-
-    li mark {
-      display: inline;
-      padding: 0;
-    }
 
     li > * {
       display: block;
@@ -28,7 +28,6 @@ export const Styled = styled.div<{ withTheme?: boolean }>`
       &:focus {
         border: 0;
         box-shadow: 0;
-        font-weight: bold;
         outline: 0;
       }
     }

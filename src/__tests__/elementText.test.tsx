@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getElementText } from '../getElementText'
+import { getElementText } from '../elementText'
 
 describe('getElementText', () => {
   const Test = ({ children }: { children?: React.ReactNode }) => (

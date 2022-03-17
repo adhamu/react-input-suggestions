@@ -2,7 +2,7 @@ import React from 'react'
 
 import type { Props } from './types'
 
-import { getElementText, wrapElementText } from './getElementText'
+import { getElementText, wrapElementText } from './elementText'
 import { Styled } from './styled'
 import { useSuggestions } from './useSuggestions'
 
