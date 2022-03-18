@@ -7,7 +7,7 @@ A React input component with pluggable search suggestions and autocomplete.
 
 Also includes arrow key navigation through results.
 
-[![Build](https://github.com/adhamu/react-input-suggestions/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adhamu/react-search-suggestions/actions)
+[![Build](https://github.com/adhamu/react-input-suggestions/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adhamu/react-input-suggestions/actions)
 
 </div>
 

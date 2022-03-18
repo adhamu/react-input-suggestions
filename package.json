@@ -1,6 +1,6 @@
 {
   "name": "react-input-suggestions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React input component with pluggable suggestions and autocomplete",
   "keywords": [
     "react",
