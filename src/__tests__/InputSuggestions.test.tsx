@@ -3,7 +3,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import SearchSuggestions from '../SearchSuggestions'
+import InputSuggestions from '../InputSuggestions'
 import * as elementText from '../elementText'
 
 const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
@@ -12,7 +12,7 @@ const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
   </a>
 ))
 
-describe('SearchSuggestions', () => {
+describe('InputSuggestions', () => {
   const mockGetElementText = jest.spyOn(elementText, 'getElementText')
   const mockWrapElementText = jest.spyOn(elementText, 'wrapElementText')
 
@@ -20,7 +20,7 @@ describe('SearchSuggestions', () => {
 
   describe('renders correctly with default options', () => {
     beforeEach(() => {
-      render(<SearchSuggestions suggestions={suggestions} />)
+      render(<InputSuggestions suggestions={suggestions} />)
     })
 
     it('has the correct type', () => {
@@ -75,15 +75,21 @@ describe('SearchSuggestions', () => {
   })
 
   describe('renders correctly with custom options', () => {
+    it('has the correct type', () => {
+      render(<InputSuggestions suggestions={suggestions} type="text" />)
+
+      expect(screen.getByRole('textbox')).toHaveAttribute('type', 'text')
+    })
+
     it('sets the name attribute', () => {
-      render(<SearchSuggestions suggestions={suggestions} name="search" />)
+      render(<InputSuggestions suggestions={suggestions} name="search" />)
 
       expect(screen.getByRole('searchbox')).toHaveAttribute('name', 'search')
     })
 
     it('sets the placeholder attribute', () => {
       render(
-        <SearchSuggestions
+        <InputSuggestions
           suggestions={suggestions}
           placeholder="Enter keywords"
         />
@@ -96,14 +102,14 @@ describe('SearchSuggestions', () => {
     })
 
     it('sets autoFocus', () => {
-      render(<SearchSuggestions suggestions={suggestions} autoFocus />)
+      render(<InputSuggestions suggestions={suggestions} autoFocus />)
 
       expect(screen.getByRole('searchbox')).toHaveFocus()
     })
 
     it('sets an ID', () => {
       const { container } = render(
-        <SearchSuggestions suggestions={suggestions} id="react-search" />
+        <InputSuggestions suggestions={suggestions} id="react-search" />
       )
 
       // eslint-disable-next-line testing-library/no-node-access
@@ -112,7 +118,7 @@ describe('SearchSuggestions', () => {
 
     it('sets a className', () => {
       const { container } = render(
-        <SearchSuggestions suggestions={suggestions} className="react-search" />
+        <InputSuggestions suggestions={suggestions} className="react-search" />
       )
 
       // eslint-disable-next-line testing-library/no-node-access
@@ -120,7 +126,7 @@ describe('SearchSuggestions', () => {
     })
 
     it('calls wrapElementText when highlightKeywords provided', () => {
-      render(<SearchSuggestions suggestions={suggestions} highlightKeywords />)
+      render(<InputSuggestions suggestions={suggestions} highlightKeywords />)
 
       userEvent.type(screen.getByRole('searchbox'), 't')
 
@@ -132,7 +138,7 @@ describe('SearchSuggestions', () => {
     const mockOnChange = jest.fn()
 
     render(
-      <SearchSuggestions suggestions={suggestions} onChange={mockOnChange} />
+      <InputSuggestions suggestions={suggestions} onChange={mockOnChange} />
     )
 
     expect(mockOnChange).not.toHaveBeenCalled()
@@ -144,7 +150,7 @@ describe('SearchSuggestions', () => {
   })
 
   it('shows filtered search suggestions based on input entered', () => {
-    render(<SearchSuggestions suggestions={suggestions} />)
+    render(<InputSuggestions suggestions={suggestions} />)
 
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
 

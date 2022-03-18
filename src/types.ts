@@ -2,6 +2,7 @@ import type React from 'react'
 
 export type Props = {
   id?: string
+  type?: 'search' | 'text'
   suggestions: React.ReactNode[]
   className?: string
   name?: string

@@ -1,13 +1,13 @@
-# React Search Suggestions
+# React Input Suggestions
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/adhamu/react-search-suggestions/main/demo.png" alt="demo"/>
+  <img src="https://raw.githubusercontent.com/adhamu/react-input-suggestions/main/demo.png" alt="demo"/>
 
-A React input component with pluggable search suggestions.
+A React input component with pluggable search suggestions and autocomplete.
 
 Also includes arrow key navigation through results.
 
-[![Build](https://github.com/adhamu/react-search-suggestions/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adhamu/react-search-suggestions/actions)
+[![Build](https://github.com/adhamu/react-input-suggestions/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adhamu/react-search-suggestions/actions)
 
 </div>
 
@@ -18,17 +18,17 @@ Also includes arrow key navigation through results.
 ## Installation
 
 ```shell
-yarn add react-search-suggestions
+yarn add react-input-suggestions
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import { SearchSuggestions } from 'react-search-suggestions'
+import { InputSuggestions } from 'react-input-suggestions'
 
 const MyComponent = () => (
-  <SearchSuggestions
+  <InputSuggestions
     autoFocus
     suggestions={[
       'polite',
@@ -80,14 +80,14 @@ If you wanted to do something else `onClick` or `onKeyDown`, you could do someth
 
 ```jsx
 import React from 'react'
-import { SearchSuggestions } from 'react-search-suggestions'
+import { InputSuggestions } from 'react-input-suggestions'
 
 const customFunction = (arg: string) => {
   console.log(arg)
 }
 
 const MyComponent = () => (
-  <SearchSuggestions
+  <InputSuggestions
     autoFocus
     suggestions={[
       'polite',
@@ -119,23 +119,24 @@ export default MyComponent
 
 ## Props
 
-| Prop                | Description                                                                            | Type              | Default     | Required? |
-| ------------------- | -------------------------------------------------------------------------------------- | ----------------- | ----------- | --------- |
-| `suggestions`       | A collection of HTML elements or React components used for search suggestions          | React.ReactNode[] |             | Y         |
-| `id`                | ID for entire component                                                                | string            | `undefined` | N         |
-| `className`         | Optional class name to style component                                                 | string            | `''`        | N         |
-| `name`              | Input name                                                                             | string            | `'q'`       | N         |
-| `placeholder`       | Input placeholder                                                                      | string            | `'Search'`  | N         |
-| `autoFocus`         | Input autoFocus                                                                        | boolean           | `false`     | N         |
-| `onChange`          | Input onChange handler                                                                 | function          | `undefined` | N         |
-| `withStyles`        | Basic styling for the component                                                        | boolean           | `false`     | N         |
-| `highlightKeywords` | Highlight letters that match search term by wrapping a `<mark>` tag around suggestions | boolean           | `false`     | N         |
+| Prop                | Description                                                                            | Type               | Default     | Required? |
+| ------------------- | -------------------------------------------------------------------------------------- | ------------------ | ----------- | --------- |
+| `suggestions`       | A collection of HTML elements or React components used for search suggestions          | React.ReactNode[]  |             | Y         |
+| `id`                | ID for entire component                                                                | string             | `undefined` | N         |
+| `type`              | Input type                                                                             | 'search' \| 'text' | `search`    | N         |
+| `className`         | Optional class name to style component                                                 | string             | `''`        | N         |
+| `name`              | Input name                                                                             | string             | `'q'`       | N         |
+| `placeholder`       | Input placeholder                                                                      | string             | `'Search'`  | N         |
+| `autoFocus`         | Input autoFocus                                                                        | boolean            | `false`     | N         |
+| `onChange`          | Input onChange handler                                                                 | function           | `undefined` | N         |
+| `withStyles`        | Basic styling for the component                                                        | boolean            | `false`     | N         |
+| `highlightKeywords` | Highlight letters that match search term by wrapping a `<mark>` tag around suggestions | boolean            | `false`     | N         |
 
 ## Styling
 
 By default, the component comes with almost no styles. Given the semantic nature of the markup, it is quite easy to target these with CSS. As mentioned above, you can provide a `className` to the component for this.
 
-Alternatively, you can set the `withStyles` prop to `true` to achieve some very basic styling. An example of this can be seen on [GitHub Pages](http://adhamu.github.io/react-search-suggestions/).
+Alternatively, you can set the `withStyles` prop to `true` to achieve some very basic styling. An example of this can be seen on [GitHub Pages](http://adhamu.github.io/react-input-suggestions/).
 
 **Important**: The `:focus` attribute on each top level element's search suggestion is what powers the active state of a selected element. Refer to the [HTML Structure](#html-structure) above to correctly determine any CSS selectors.
 

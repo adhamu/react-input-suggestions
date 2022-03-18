@@ -1,19 +1,20 @@
 {
-  "name": "react-search-suggestions",
+  "name": "react-input-suggestions",
   "version": "1.0.0",
-  "description": "A React input component with pluggable search suggestions.",
+  "description": "A React input component with pluggable suggestions and autocomplete",
   "keywords": [
     "react",
-    "autcomplete",
+    "autocomplete",
     "search",
     "suggestions",
     "typescript",
     "arrow key navigation",
-    "esbuild"
+    "esbuild",
+    "input"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/adhamu/react-search-suggestions"
+    "url": "https://github.com/adhamu/react-input-suggestions"
   },
   "license": "MIT",
   "author": "Amit Dhamu <dev@amitd.co>",

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { SearchSuggestions } from '..'
+import { InputSuggestions } from '..'
 
 const suggestions = [
   'polite',
@@ -60,7 +60,7 @@ const suggestions = [
 ))
 
 const App = (): JSX.Element => (
-  <SearchSuggestions
+  <InputSuggestions
     suggestions={suggestions}
     autoFocus
     withTheme

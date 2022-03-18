@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 
 import { Styled } from '../styled'
 
-describe('Search Suggestion Styles', () => {
+describe('Input Suggestion Styles', () => {
   it('has the correct styles without theme', () => {
     const { container } = render(<Styled>Hello world</Styled>)
 

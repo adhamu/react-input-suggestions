@@ -6,8 +6,9 @@ import { getElementText, wrapElementText } from './elementText'
 import { Styled } from './styled'
 import { useSuggestions } from './useSuggestions'
 
-const SearchSuggestions = ({
+const InputSuggestions = ({
   suggestions,
+  type = 'search',
   name = 'q',
   placeholder = 'Search',
   autoFocus = false,
@@ -37,7 +38,7 @@ const SearchSuggestions = ({
     <Styled id={id} className={className} withTheme={withTheme}>
       <input
         ref={inputSearchRef}
-        type="search"
+        type={type}
         name={name}
         placeholder={placeholder}
         autoFocus={autoFocus}
@@ -76,4 +77,4 @@ const SearchSuggestions = ({
   )
 }
 
-export default SearchSuggestions
+export default InputSuggestions
