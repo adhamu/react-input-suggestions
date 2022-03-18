@@ -119,16 +119,17 @@ export default MyComponent
 
 ## Props
 
-| Prop          | Description                                                                   | Type              | Default     | Required? |
-| ------------- | ----------------------------------------------------------------------------- | ----------------- | ----------- | --------- |
-| `suggestions` | A collection of HTML elements or React components used for search suggestions | React.ReactNode[] |             | Y         |
-| `id`          | ID for entire component                                                       | string            | `undefined` | N         |
-| `className`   | Optional class name to style component                                        | string            | `''`        | N         |
-| `name`        | Input name                                                                    | string            | `'q'`       | N         |
-| `placeholder` | Input placeholder                                                             | string            | `'Search'`  | N         |
-| `autoFocus`   | Input autoFocus                                                               | boolean           | `false`     | N         |
-| `onChange`    | Input onChange handler                                                        | function          | `undefined` | N         |
-| `withStyles`  | Basic styling for the component                                               | boolean           | `false`     | N         |
+| Prop                | Description                                                                            | Type              | Default     | Required? |
+| ------------------- | -------------------------------------------------------------------------------------- | ----------------- | ----------- | --------- |
+| `suggestions`       | A collection of HTML elements or React components used for search suggestions          | React.ReactNode[] |             | Y         |
+| `id`                | ID for entire component                                                                | string            | `undefined` | N         |
+| `className`         | Optional class name to style component                                                 | string            | `''`        | N         |
+| `name`              | Input name                                                                             | string            | `'q'`       | N         |
+| `placeholder`       | Input placeholder                                                                      | string            | `'Search'`  | N         |
+| `autoFocus`         | Input autoFocus                                                                        | boolean           | `false`     | N         |
+| `onChange`          | Input onChange handler                                                                 | function          | `undefined` | N         |
+| `withStyles`        | Basic styling for the component                                                        | boolean           | `false`     | N         |
+| `highlightKeywords` | Highlight letters that match search term by wrapping a `<mark>` tag around suggestions | boolean           | `false`     | N         |
 
 ## Styling
 

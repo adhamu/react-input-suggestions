@@ -54,20 +54,8 @@ const suggestions = [
   'pressure',
   'cooperate',
 ].map(word => (
-  <a
-    key={word}
-    onKeyDown={e => {
-      if (e.key === 'Enter') {
-        console.log(word)
-      }
-    }}
-    onClick={() => {
-      console.log(word)
-    }}
-  >
-    <div>
-      <div>{word}</div>
-    </div>
+  <a key={word} href={`https://www.google.co.uk/search?q=${word}`}>
+    {word}
   </a>
 ))
 

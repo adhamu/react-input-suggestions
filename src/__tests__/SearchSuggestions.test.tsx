@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import SearchSuggestions from '../SearchSuggestions'
-import * as getElementText from '../elementText'
+import * as elementText from '../elementText'
 
 const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
   <a key={word} href={`https://${word}.com`}>
@@ -13,7 +13,8 @@ const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
 ))
 
 describe('SearchSuggestions', () => {
-  const mockGetElementText = jest.spyOn(getElementText, 'getElementText')
+  const mockGetElementText = jest.spyOn(elementText, 'getElementText')
+  const mockWrapElementText = jest.spyOn(elementText, 'wrapElementText')
 
   beforeEach(jest.clearAllMocks)
 
@@ -65,6 +66,12 @@ describe('SearchSuggestions', () => {
     it('does not show suggestions if no input has been entered', () => {
       expect(screen.queryByRole('list')).not.toBeInTheDocument()
     })
+
+    it('does not wrap search suggestions', () => {
+      userEvent.type(screen.getByRole('searchbox'), 't')
+
+      expect(mockWrapElementText).not.toHaveBeenCalled()
+    })
   })
 
   describe('renders correctly with custom options', () => {
@@ -110,6 +117,14 @@ describe('SearchSuggestions', () => {
 
       // eslint-disable-next-line testing-library/no-node-access
       expect(container.firstChild).toHaveClass('react-search')
+    })
+
+    it('calls wrapElementText when highlightKeywords provided', () => {
+      render(<SearchSuggestions suggestions={suggestions} highlightKeywords />)
+
+      userEvent.type(screen.getByRole('searchbox'), 't')
+
+      expect(mockWrapElementText).toHaveBeenCalledTimes(2)
     })
   })
 
