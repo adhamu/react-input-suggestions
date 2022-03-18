@@ -18,14 +18,14 @@ Also includes arrow key navigation through results.
 ## Installation
 
 ```shell
-yarn add @adhamu/react-search-suggestions
+yarn add react-search-suggestions
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import { SearchSuggestions } from '@adhamu/react-search-suggestions'
+import { SearchSuggestions } from 'react-search-suggestions'
 
 const MyComponent = () => (
   <SearchSuggestions
@@ -80,7 +80,7 @@ If you wanted to do something else `onClick` or `onKeyDown`, you could do someth
 
 ```jsx
 import React from 'react'
-import { SearchSuggestions } from '@adhamu/react-search-suggestions'
+import { SearchSuggestions } from 'react-search-suggestions'
 
 const customFunction = (arg: string) => {
   console.log(arg)

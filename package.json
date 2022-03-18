@@ -1,6 +1,6 @@
 {
-  "name": "@adhamu/react-search-suggestions",
-  "version": "2.2.0",
+  "name": "react-search-suggestions",
+  "version": "1.0.0",
   "description": "A React input component with pluggable search suggestions.",
   "keywords": [
     "react",
