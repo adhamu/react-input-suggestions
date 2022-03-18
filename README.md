@@ -123,7 +123,7 @@ export default MyComponent
 | ------------------- | -------------------------------------------------------------------------------------- | ------------------ | ----------- | --------- |
 | `suggestions`       | A collection of HTML elements or React components used for search suggestions          | React.ReactNode[]  |             | Y         |
 | `id`                | ID for entire component                                                                | string             | `undefined` | N         |
-| `type`              | Input type                                                                             | 'search' \| 'text' | `search`    | N         |
+| `type`              | Input type                                                                             | 'search' \| 'text' | `'search'`  | N         |
 | `className`         | Optional class name to style component                                                 | string             | `''`        | N         |
 | `name`              | Input name                                                                             | string             | `'q'`       | N         |
 | `placeholder`       | Input placeholder                                                                      | string             | `'Search'`  | N         |
