@@ -22,8 +22,13 @@ const InputSuggestions = ({
   const inputSearchRef = React.useRef<HTMLInputElement>(null)
   const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
 
-  const { selectInitialResult, onResultsHover, onResultsKeyDown } =
-    useSuggestions(inputSearchRef, searchSuggestionsRef)
+  const {
+    selectInitialResult,
+    onResultsHover,
+    onResultsKeyDown,
+    showSuggestions,
+    onInputFocus,
+  } = useSuggestions(inputSearchRef, searchSuggestionsRef, results)
 
   const filterSuggestions = (e: { target: { value: string } }) =>
     setResults(
@@ -49,30 +54,29 @@ const InputSuggestions = ({
           filterSuggestions(e)
         }}
         onKeyDown={selectInitialResult}
+        onFocus={onInputFocus}
         spellCheck={false}
         autoComplete="off"
         autoCapitalize="off"
       />
-      {inputSearchRef.current &&
-        inputSearchRef.current.value.length > 0 &&
-        results.length > 0 && (
-          <ul ref={searchSuggestionsRef}>
-            {results.map(suggestion => (
-              <li
-                key={getElementText(suggestion)}
-                onMouseOver={onResultsHover}
-                onKeyDown={onResultsKeyDown}
-              >
-                {highlightKeywords
-                  ? wrapElementText(
-                      suggestion,
-                      inputSearchRef.current?.value || ''
-                    )
-                  : suggestion}
-              </li>
-            ))}
-          </ul>
-        )}
+      {showSuggestions && (
+        <ul ref={searchSuggestionsRef}>
+          {results.map(suggestion => (
+            <li
+              key={getElementText(suggestion)}
+              onMouseOver={onResultsHover}
+              onKeyDown={onResultsKeyDown}
+            >
+              {highlightKeywords
+                ? wrapElementText(
+                    suggestion,
+                    inputSearchRef.current?.value || ''
+                  )
+                : suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
     </Styled>
   )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 const ARROW_KEY_DOWN = 'ArrowDown'
 const ARROW_KEY_UP = 'ArrowUp'
 const ENTER = 'Enter'
+const TAB = 'Tab'
 
 enum SiblingType {
   NEXT = 'nextSibling',
@@ -16,13 +17,42 @@ enum ResultType {
 
 export const useSuggestions = (
   inputSearchRef: React.RefObject<HTMLInputElement>,
-  searchSuggestionsRef: React.RefObject<HTMLUListElement>
+  searchSuggestionsRef: React.RefObject<HTMLUListElement>,
+  results: React.ReactNode[]
 ) => {
+  const [showSuggestions, setShowSuggestions] = React.useState(false)
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      showSuggestions &&
+      !searchSuggestionsRef.current?.contains(e.target as Node)
+    ) {
+      setShowSuggestions(false)
+    }
+  }
+
+  React.useEffect(() => {
+    setShowSuggestions(
+      Boolean(
+        inputSearchRef &&
+          inputSearchRef.current &&
+          inputSearchRef.current.value.length > 0 &&
+          results.length > 0
+      )
+    )
+  }, [results])
+
   React.useEffect(() => {
     searchSuggestionsRef.current?.querySelectorAll('li')?.forEach(el => {
       // eslint-disable-next-line no-param-reassign
-      ;(el.firstChild as HTMLElement).tabIndex = -1
+      ;(el.firstChild as HTMLElement).tabIndex = 0
     })
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [searchSuggestionsRef.current])
 
   const selectElement = (type: ResultType) => {
@@ -82,7 +112,7 @@ export const useSuggestions = (
   }
 
   const onResultsKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
-    if (e.key === ARROW_KEY_DOWN) {
+    if ([ARROW_KEY_DOWN, TAB].includes(e.key)) {
       selectResult(e, SiblingType.NEXT)
     } else if (e.key === ARROW_KEY_UP) {
       selectResult(e, SiblingType.PREVIOUS)
@@ -91,9 +121,21 @@ export const useSuggestions = (
     }
   }
 
+  const onInputFocus = (e: { currentTarget: { value: string } }) => {
+    if (
+      document.activeElement === inputSearchRef.current &&
+      e.currentTarget.value !== ''
+    ) {
+      setShowSuggestions(true)
+    }
+  }
+
   return {
     selectInitialResult,
     onResultsHover,
     onResultsKeyDown,
+    showSuggestions,
+    setShowSuggestions,
+    onInputFocus,
   }
 }

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { screen } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 
@@ -9,6 +11,17 @@ describe('useSuggestions', () => {
   let inputRef: React.RefObject<HTMLInputElement>
   let listRef: React.RefObject<HTMLUListElement>
   let target: HTMLElement
+  const results = [
+    <a key="1" href="https://twitter.com">
+      Twitter
+    </a>,
+    <a key="2" href="https://facebook.com">
+      Facebook
+    </a>,
+    <a key="3" href="https://reddit.com">
+      Reddit
+    </a>,
+  ]
 
   beforeEach(() => {
     target = document.createElement('div')
@@ -45,15 +58,17 @@ describe('useSuggestions', () => {
   })
 
   it('sets the tab index for each list item', () => {
-    renderHook(() => useSuggestions(inputRef, listRef))
+    renderHook(() => useSuggestions(inputRef, listRef, results))
 
     screen.getAllByRole('link').forEach(linkItem => {
-      expect(linkItem).toHaveAttribute('tabIndex', '-1')
+      expect(linkItem).toHaveAttribute('tabIndex', '0')
     })
   })
 
   it('selects the first initial result', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.selectInitialResult({
       currentTarget: { value: ' ' },
@@ -65,7 +80,9 @@ describe('useSuggestions', () => {
   })
 
   it('selects the last initial result', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.selectInitialResult({
       currentTarget: { value: ' ' },
@@ -77,7 +94,9 @@ describe('useSuggestions', () => {
   })
 
   it('sets focus on the hovered element', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.onResultsHover({
       currentTarget: {
@@ -97,7 +116,9 @@ describe('useSuggestions', () => {
   })
 
   it('navigates through search suggestions', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
     const triggerEvent = (next: string, previous: string, key: string) =>
       ({
         currentTarget: {
@@ -121,9 +142,7 @@ describe('useSuggestions', () => {
 
     expect(screen.getByRole('link', { name: 'Facebook' })).toHaveFocus()
 
-    result.current.onResultsKeyDown(
-      triggerEvent('Twitter', 'Facebook', 'ArrowDown')
-    )
+    result.current.onResultsKeyDown(triggerEvent('Twitter', 'Facebook', 'Tab'))
 
     expect(screen.getByRole('link', { name: 'Twitter' })).toHaveFocus()
 
@@ -135,7 +154,9 @@ describe('useSuggestions', () => {
   })
 
   it('navigates to first result if nextSibling unavailable', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.onResultsKeyDown({
       currentTarget: {
@@ -149,7 +170,9 @@ describe('useSuggestions', () => {
   })
 
   it('navigates to last result if previousSibling unavailable', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.onResultsKeyDown({
       currentTarget: {
@@ -162,17 +185,31 @@ describe('useSuggestions', () => {
     expect(screen.getByRole('link', { name: 'Twitter' })).toHaveFocus()
   })
 
-  it('sets focus back to input element if arrow keys not pressed', () => {
-    const { result } = renderHook(() => useSuggestions(inputRef, listRef))
+  it('sets focus back to input element if arrow keys or tab not pressed', () => {
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
 
     result.current.onResultsKeyDown({
       currentTarget: {
         value: 'r',
       },
-      key: 'Tab',
+      key: 'e',
       preventDefault: jest.fn(),
     } as unknown as React.KeyboardEvent<HTMLLIElement>)
 
     expect(screen.getByRole('searchbox')).toHaveFocus()
+  })
+
+  it('sets showSuggestions to true if results exist and input not empty', () => {
+    if (inputRef.current) {
+      inputRef.current.value = 'r'
+    }
+
+    const { result } = renderHook(() =>
+      useSuggestions(inputRef, listRef, results)
+    )
+
+    expect(result.current.showSuggestions).toBeTruthy()
   })
 })
