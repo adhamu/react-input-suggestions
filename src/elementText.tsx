@@ -1,4 +1,5 @@
-import React from 'react'
+import type { ReactElement } from 'react'
+import React, { Children, cloneElement } from 'react'
 
 import reactStringReplace from 'react-string-replace'
 
@@ -12,7 +13,7 @@ export const getElementText = (node: React.ReactNode): string | undefined => {
   }
 
   if (typeof node === 'object' && node) {
-    return getElementText((node as React.ReactElement).props.children)
+    return getElementText((node as ReactElement).props.children)
   }
 
   return undefined
@@ -23,10 +24,10 @@ const highlightKeyword = (content: string, keyword: string) =>
     <mark key={key}>{match}</mark>
   ))
 
-const cloneChildren = (children: React.ReactElement[], keyword: string): any =>
-  React.Children.map(children, child =>
+const cloneChildren = (children: ReactElement[], keyword: string): any =>
+  Children.map(children, child =>
     child.props
-      ? React.cloneElement(child, {
+      ? cloneElement(child, {
           children: highlightKeyword(
             cloneChildren(child.props.children, keyword),
             keyword
@@ -38,7 +39,7 @@ const cloneChildren = (children: React.ReactElement[], keyword: string): any =>
 export const wrapElementText = (
   node: React.ReactNode,
   keyword: string
-): React.ReactElement | React.ReactNode => {
+): ReactElement | React.ReactNode => {
   const n = node as React.ReactElement
   const {
     props: { children },

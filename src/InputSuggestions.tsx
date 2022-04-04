@@ -1,4 +1,5 @@
-import React from 'react'
+import type { ReactNode } from 'react'
+import { useRef, useState } from 'react'
 
 import type { Props } from './types'
 
@@ -18,9 +19,9 @@ const InputSuggestions = ({
   onChange,
   highlightKeywords = false,
 }: Props): JSX.Element => {
-  const [results, setResults] = React.useState<React.ReactNode[]>(suggestions)
-  const inputSearchRef = React.useRef<HTMLInputElement>(null)
-  const searchSuggestionsRef = React.useRef<HTMLUListElement>(null)
+  const [results, setResults] = useState<ReactNode[]>(suggestions)
+  const inputSearchRef = useRef<HTMLInputElement>(null)
+  const searchSuggestionsRef = useRef<HTMLUListElement>(null)
 
   const {
     selectInitialResult,
