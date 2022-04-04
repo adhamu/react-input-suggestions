@@ -84,7 +84,7 @@ export const useSuggestions = (
     }
   }
 
-  const onResultsHover = (e: React.MouseEvent) => {
+  const onResultsHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     ;(e?.currentTarget?.firstChild as HTMLInputElement)?.focus()
   }
 
