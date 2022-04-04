@@ -1,5 +1,4 @@
 {
-  "types": ["react/next", "react-dom/next"],
   "extends": "./node_modules/@adhamu/zero/tsconfig/react.json",
   "include": ["src/**/*.ts*"],
   "exclude": ["node_modules", "dist"],

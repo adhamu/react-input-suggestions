@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import InputSuggestions from '../InputSuggestions'
@@ -123,16 +123,16 @@ describe('InputSuggestions', () => {
       expect(container.firstChild).toHaveClass('react-search')
     })
 
-    it('calls wrapElementText when highlightKeywords provided', () => {
+    it('calls wrapElementText when highlightKeywords provided', async () => {
       render(<InputSuggestions suggestions={suggestions} highlightKeywords />)
 
       userEvent.type(screen.getByRole('searchbox'), 't')
 
-      expect(mockWrapElementText).toHaveBeenCalledTimes(2)
+      await waitFor(() => expect(mockWrapElementText).toHaveBeenCalledTimes(2))
     })
   })
 
-  it('fires an onChange event if provided', () => {
+  it('fires an onChange event if provided', async () => {
     const mockOnChange = jest.fn()
 
     render(
@@ -143,31 +143,37 @@ describe('InputSuggestions', () => {
 
     userEvent.type(screen.getByRole('searchbox'), 't')
 
-    expect(mockOnChange).toHaveBeenCalled()
-    expect(mockGetElementText).toHaveBeenCalled()
+    await waitFor(() => expect(mockOnChange).toHaveBeenCalled())
+    await waitFor(() => expect(mockGetElementText).toHaveBeenCalled())
   })
 
-  it('shows filtered search suggestions based on input entered', () => {
+  it('shows filtered search suggestions based on input entered', async () => {
     render(<InputSuggestions suggestions={suggestions} />)
 
     expect(screen.queryByRole('list')).not.toBeInTheDocument()
 
     userEvent.type(screen.getByRole('searchbox'), 't')
 
-    expect(screen.getByRole('list')).toBeInTheDocument()
+    expect(await screen.findByRole('list')).toBeInTheDocument()
 
-    expect(screen.getByRole('link', { name: 'reddit' })).toHaveAttribute(
-      'href',
-      'https://reddit.com'
+    await waitFor(() =>
+      expect(screen.getByRole('link', { name: 'reddit' })).toHaveAttribute(
+        'href',
+        'https://reddit.com'
+      )
     )
 
-    expect(screen.getByRole('link', { name: 'twitter' })).toHaveAttribute(
-      'href',
-      'https://twitter.com'
+    await waitFor(() =>
+      expect(screen.getByRole('link', { name: 'twitter' })).toHaveAttribute(
+        'href',
+        'https://twitter.com'
+      )
     )
 
-    expect(
-      screen.queryByRole('link', { name: 'facebook' })
-    ).not.toBeInTheDocument()
+    await waitFor(() =>
+      expect(
+        screen.queryByRole('link', { name: 'facebook' })
+      ).not.toBeInTheDocument()
+    )
   })
 })
