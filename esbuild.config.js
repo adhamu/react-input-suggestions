@@ -19,7 +19,6 @@ const common = {
 if (build) {
   const options = {
     ...common,
-    bundle: true,
     entryPoints: ['./src/index.ts'],
     external: Object.keys(require('./package.json').dependencies || {}),
     logLevel: 'info',
