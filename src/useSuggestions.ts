@@ -1,4 +1,5 @@
-import React from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 
 const ARROW_KEY_DOWN = 'ArrowDown'
 const ARROW_KEY_UP = 'ArrowUp'
@@ -20,7 +21,7 @@ export const useSuggestions = (
   searchSuggestionsRef: React.RefObject<HTMLUListElement>,
   results: React.ReactNode[]
 ) => {
-  const [showSuggestions, setShowSuggestions] = React.useState(false)
+  const [showSuggestions, setShowSuggestions] = useState(false)
 
   const handleClickOutside = (e: MouseEvent) => {
     if (
@@ -31,7 +32,7 @@ export const useSuggestions = (
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setShowSuggestions(
       Boolean(
         inputSearchRef &&
@@ -42,7 +43,7 @@ export const useSuggestions = (
     )
   }, [results])
 
-  React.useEffect(() => {
+  useEffect(() => {
     searchSuggestionsRef.current?.querySelectorAll('li')?.forEach(el => {
       // eslint-disable-next-line no-param-reassign
       ;(el.firstChild as HTMLElement).tabIndex = 0

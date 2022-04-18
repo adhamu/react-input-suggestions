@@ -24,7 +24,6 @@ yarn add react-input-suggestions
 ## Usage
 
 ```jsx
-import React from 'react'
 import { InputSuggestions } from 'react-input-suggestions'
 
 const MyComponent = () => (
@@ -79,7 +78,6 @@ The markup is very simple. You bring what populates each search suggestion. In t
 If you wanted to do something else `onClick` or `onKeyDown`, you could do something like:
 
 ```jsx
-import React from 'react'
 import { InputSuggestions } from 'react-input-suggestions'
 
 const customFunction = (arg: string) => {
