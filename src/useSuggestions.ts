@@ -23,15 +23,6 @@ export const useSuggestions = (
 ) => {
   const [showSuggestions, setShowSuggestions] = useState(false)
 
-  const handleClickOutside = (e: MouseEvent) => {
-    if (
-      showSuggestions &&
-      !searchSuggestionsRef.current?.contains(e.target as Node)
-    ) {
-      setShowSuggestions(false)
-    }
-  }
-
   useEffect(() => {
     setShowSuggestions(
       Boolean(
@@ -41,9 +32,18 @@ export const useSuggestions = (
           results.length > 0
       )
     )
-  }, [results])
+  }, [inputSearchRef, results])
 
   useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        showSuggestions &&
+        !searchSuggestionsRef.current?.contains(e.target as Node)
+      ) {
+        setShowSuggestions(false)
+      }
+    }
+
     searchSuggestionsRef.current?.querySelectorAll('li')?.forEach(el => {
       // eslint-disable-next-line no-param-reassign
       ;(el.firstChild as HTMLElement).tabIndex = 0
@@ -54,7 +54,7 @@ export const useSuggestions = (
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [searchSuggestionsRef.current])
+  }, [searchSuggestionsRef, showSuggestions])
 
   const selectElement = (type: ResultType) => {
     ;(
@@ -94,7 +94,8 @@ export const useSuggestions = (
   ) => {
     e.preventDefault()
 
-    const resultType = e.currentTarget?.[type]?.firstChild as HTMLInputElement
+    const resultType = e.currentTarget?.[`${type}`]
+      ?.firstChild as HTMLInputElement
 
     if (resultType) {
       resultType.focus()
