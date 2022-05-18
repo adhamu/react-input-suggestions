@@ -1,14 +1,13 @@
 const path = require('path')
 
+const { arge } = require('arge')
 const chokidar = require('chokidar')
 const esbuild = require('esbuild')
 const liveServer = require('live-server')
 
 const root = './public'
 
-const build = process.argv[2] === 'build' || false
-const dev = process.argv[2] === 'dev' || false
-const watch = (dev && process.argv[3] === '--watch') || false
+const { build = false, dev = false, watch = false } = arge(process.argv)
 
 const common = {
   bundle: true,

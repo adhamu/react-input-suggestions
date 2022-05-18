@@ -2,7 +2,7 @@
   "extends": ["./node_modules/@adhamu/zero/eslint/typescript-react"],
   "overrides": [
     {
-      "files": ["./esbuild/**/*.js", "./setupTests.ts"],
+      "files": ["./setupTests.ts"],
       "rules": {
         "import/no-extraneous-dependencies": [
           "error",

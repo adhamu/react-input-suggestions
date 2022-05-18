@@ -1,6 +1,6 @@
 {
   "name": "react-input-suggestions",
-  "version": "2.0.1",
+  "version": "2.2.0",
   "description": "A React input component with pluggable suggestions and autocomplete",
   "keywords": [
     "react",
@@ -41,32 +41,34 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-string-replace": "^1.0.0"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-string-replace": "^1.1.0"
   },
   "devDependencies": {
-    "@adhamu/zero": "^4.1.1",
+    "@adhamu/zero": "^4.3.1",
     "@emotion/jest": "^11.8.0",
-    "@stylelint/postcss-css-in-js": "^0.37.2",
-    "@swc/core": "^1.2.171",
-    "@swc/jest": "^0.2.20",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
+    "@swc/core": "^1.2.186",
+    "@swc/jest": "^0.2.21",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^14.1.1",
-    "@types/jest": "^27.4.1",
-    "@types/react": "^18.0.5",
-    "@types/react-dom": "^18.0.1",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^14.2.0",
+    "@types/jest": "^27.5.1",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "arge": "^1.1.4",
     "chokidar": "^3.5.3",
-    "esbuild": "^0.14.36",
-    "gh-pages": "^3.2.3",
-    "jest": "^27.5.1",
-    "live-server": "^1.2.1",
+    "esbuild": "^0.14.39",
+    "gh-pages": "^4.0.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "live-server": "^1.2.2",
     "postcss-syntax": "^0.36.2",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   }
 }
