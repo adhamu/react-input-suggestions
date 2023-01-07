@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import InputSuggestions from '../InputSuggestions'
-import * as elementText from '../elementText'
+import { elementText } from '../elementText'
 
 const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
   <a key={word} href={`https://${word}.com`}>
@@ -11,8 +11,8 @@ const suggestions = ['reddit', 'facebook', 'twitter'].map(word => (
 ))
 
 describe('InputSuggestions', () => {
-  const mockGetElementText = jest.spyOn(elementText, 'getElementText')
-  const mockWrapElementText = jest.spyOn(elementText, 'wrapElementText')
+  const mockGetElementText = jest.spyOn(elementText, 'get')
+  const mockWrapElementText = jest.spyOn(elementText, 'wrap')
 
   beforeEach(jest.clearAllMocks)
 

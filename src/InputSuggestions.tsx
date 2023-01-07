@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react'
 import { useRef, useState } from 'react'
 
-import type { Props } from './types'
-
-import { getElementText, wrapElementText } from './elementText'
+import { elementText } from './elementText'
 import { Styled } from './styled'
+import type { Props } from './types'
 import { useSuggestions } from './useSuggestions'
 
 const InputSuggestions = ({
@@ -34,7 +33,8 @@ const InputSuggestions = ({
   const filterSuggestions = (e: { target: { value: string } }) =>
     setResults(
       suggestions.filter(suggestion =>
-        getElementText(suggestion)
+        elementText
+          .get(suggestion)
           ?.toLowerCase()
           .includes(e.target.value.toLowerCase() || '')
       )
@@ -64,12 +64,12 @@ const InputSuggestions = ({
         <ul ref={searchSuggestionsRef}>
           {results.map(suggestion => (
             <li
-              key={getElementText(suggestion)}
+              key={elementText.get(suggestion)}
               onMouseOver={onResultsHover}
               onKeyDown={onResultsKeyDown}
             >
               {highlightKeywords
-                ? wrapElementText(
+                ? elementText.wrap(
                     suggestion,
                     inputSearchRef.current?.value || ''
                   )

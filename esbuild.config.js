@@ -1,5 +1,3 @@
-const path = require('path')
-
 const { arge } = require('arge')
 const chokidar = require('chokidar')
 const esbuild = require('esbuild')
@@ -11,7 +9,7 @@ const { build = false, dev = false, watch = false } = arge(process.argv)
 
 const common = {
   bundle: true,
-  inject: [path.join(__dirname, './react-shim.js')],
+  jsx: 'automatic',
   sourcemap: false,
 }
 

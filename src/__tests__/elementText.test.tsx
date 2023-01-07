@@ -1,24 +1,24 @@
 import { render } from '@testing-library/react'
 
-import { getElementText, wrapElementText } from '../elementText'
+import { elementText } from '../elementText'
 
 describe('elementText', () => {
-  describe('getElementText', () => {
+  describe('get', () => {
     const Test = ({ children }: { children?: React.ReactNode }) => (
       <div>{children}</div>
     )
 
     it('handles strings', () => {
-      expect(getElementText('This is a test')).toBe('This is a test')
+      expect(elementText.get('This is a test')).toBe('This is a test')
     })
 
     it('handles numbers', () => {
-      expect(getElementText(100)).toBe(100)
+      expect(elementText.get(100)).toBe(100)
     })
 
     it('handles nested markup', () => {
       expect(
-        getElementText(
+        elementText.get(
           <ul>
             <li>Option 1</li>
             <li>Option 2</li>
@@ -31,7 +31,7 @@ describe('elementText', () => {
 
     it('handles React elements', () => {
       expect(
-        getElementText(
+        elementText.get(
           <Test>
             <span>Level 1</span>
             <span>Level 2</span>
@@ -42,13 +42,13 @@ describe('elementText', () => {
     })
 
     it('returns undefined if no text found', () => {
-      expect(getElementText(<Test />)).toBeUndefined()
+      expect(elementText.get(<Test />)).toBeUndefined()
     })
   })
 
-  describe('wrapElementText', () => {
+  describe('wrap', () => {
     it('can handle strings', () => {
-      const Result = () => <>{wrapElementText(<div>Level One</div>, 'one')}</>
+      const Result = () => <>{elementText.wrap(<div>Level One</div>, 'one')}</>
 
       const { container } = render(<Result />)
 
@@ -58,7 +58,7 @@ describe('elementText', () => {
     it('can handle elements with children', () => {
       const Result = () => (
         <>
-          {wrapElementText(
+          {elementText.wrap(
             <div>
               <ul>
                 <li>

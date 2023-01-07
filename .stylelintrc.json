@@ -1,5 +1,5 @@
 {
-  "extends": ["./node_modules/@adhamu/zero/stylelint/css"],
+  "extends": ["./node_modules/@adhamu/zero/stylelint"],
   "overrides": [
     {
       "files": ["**/*.{js,ts,jsx,tsx}"],
