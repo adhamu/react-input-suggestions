@@ -57,22 +57,15 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Package Public Folder
-        if: github.ref == 'refs/heads/main'
-        run: yarn predeploy
-
       - name: Deploy
         if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
-        with:
-          branch: gh-pages
-          folder: public
+        run: yarn deploy
 
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           tag_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
           release_name: ${{ steps.env_vars.outputs.CURRENT_VERSION }}
