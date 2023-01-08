@@ -57,9 +57,16 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Package Public Folder
+        if: github.ref == 'refs/heads/main'
+        run: yarn predeploy
+
       - name: Deploy
         if: github.ref == 'refs/heads/main'
-        run: yarn deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: public
 
       - name: Create Release
         if: github.ref == 'refs/heads/main'
