@@ -70,6 +70,16 @@ jobs:
           branch: gh-pages
           folder: public
 
+      - name: Create Changeset
+        run: |
+          CHANGELOG=$(git --no-pager log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
+          DELIMITER="$(openssl rand -hex 8)"
+
+          echo "RELEASE_NOTES<<${DELIMITER}" >> $GITHUB_OUTPUT
+          echo -e "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "${DELIMITER}" >> $GITHUB_OUTPUT
+        id: changeset
+
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         uses: actions/create-release@latest
@@ -81,16 +91,6 @@ jobs:
           body: "${{ steps.changeset.outputs.RELEASE_NOTES }}\n\n**Full Changelog**: https://github.com/adhamu/zero/compare/${{ steps.env_vars.outputs.PUBLISHED_VERSION }}...${{ steps.env_vars.outputs.NEW_VERSION }}"
           draft: false
           prerelease: false
-
-      - name: Create Changeset
-        run: |
-          CHANGELOG=$(git --no-pager log ${{ steps.env_vars.outputs.PUBLISHED_VERSION }}..HEAD --format="%C(auto)%h %s")
-          DELIMITER="$(openssl rand -hex 8)"
-
-          echo "RELEASE_NOTES<<${DELIMITER}" >> $GITHUB_OUTPUT
-          echo -e "$CHANGELOG" >> $GITHUB_OUTPUT
-          echo "${DELIMITER}" >> $GITHUB_OUTPUT
-        id: changeset
 
       - name: Publish to Registry
         run: |
